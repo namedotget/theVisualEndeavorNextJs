@@ -1,0 +1,25 @@
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 30vw;
+}
+.img {
+  height: 100%;
+  width: 100%;
+}
+.btn {
+  position: absolute;
+  opacity: 0.6;
+  border-radius: 20px;
+  border-color: transparent;
+  width: 15rem;
+  height: 15rem;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+}

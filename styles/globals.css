@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+}
+
+html {
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+  width: 100%;
+}
