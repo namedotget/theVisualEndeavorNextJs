@@ -1,3 +1,8 @@
+@font-face {
+  font-family: pixel;
+  src: url(../public/slkscre.ttf);
+}
+
 * {
   margin: 0;
 }
@@ -8,5 +13,28 @@ html {
 
 body {
   box-sizing: border-box;
+  font-family: pixel;
+  background-color: darkgray;
+}
+
+.pgContain {
   width: 100%;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5rem;
+
+  height: 100%;
+}
+
+.contentContain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem;
+  background-color: blue;
+  width: 90%;
 }

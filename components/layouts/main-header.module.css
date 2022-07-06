@@ -1,0 +1,62 @@
+@font-face {
+  font-family: custom;
+  src: url(../../public/slkscreb.ttf);
+}
+.header {
+  position: fixed;
+  top: 0%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 26vh;
+  background-color: transparent;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+  background: transparent;
+  backdrop-filter: blur(15px);
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: white;
+  font-family: custom;
+  height: 50%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #94fdfd;
+  word-spacing: 2rem;
+  letter-spacing: 1rem;
+}
+
+.logo a {
+  text-decoration: none;
+  color: white;
+  text-align: center;
+}
+
+.logo a :hover {
+  color: blue;
+}
+.navigation {
+  display: flex;
+  gap: 5rem;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: white;
+  font-size: 5rem;
+}
+
+@media (min-width: 768px) {
+  .logo {
+    font-size: 2.5rem;
+  }
+
+  .navigation a {
+    font-size: 2.2rem;
+  }
+}

@@ -1,8 +1,8 @@
 const fragment = `
-uniform vec2 u_resolution;
 uniform float u_time;
 uniform float u_var;
 uniform vec3 u_meshR;
+varying vec2 vUv;
 
 
 float box(vec3 p, vec3 s) {
@@ -37,12 +37,11 @@ float map(vec3 p){
 
 
 void main(){
-    vec2 uv = gl_FragCoord.xy/u_resolution;;
-    uv /= vec2(u_resolution.y/u_resolution.x,1.0);
     
     vec3 col = vec3(0.0);
-    vec3 s = vec3(0.0,0.1, -5.8);
-    vec3 r = normalize(vec3(-uv,1.0)); 
+    vec3 s = vec3(0.0,0.1,-30.0);
+    vec3 r = normalize(vec3(-vUv,1));
+    r /= vec3(vUv.x/vUv.y, 1, 1);
     
     vec3 p=s;
     float i=0.0;
@@ -58,7 +57,8 @@ void main(){
     }
     col += pow(1.0-i/100.0,8.0);
     
-    col.x += 0.5;
+    col.x += 0.2;
+    col.z += sin(vUv.x*vUv.y + u_time);
     
     
     gl_FragColor = vec4(

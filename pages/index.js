@@ -13,15 +13,13 @@ export default function HomePage() {
   };
 
   return (
-    <div className={classes.container}>
+    <div className="pgContain">
       <Head>
         <title>the Visual Endeavor</title>
         <meta name="description" content="test" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={classes.main}>
-        <RoomPreview onClick={handleRoomPreviewBtn} />
-      </main>
+      <RoomPreview onClick={handleRoomPreviewBtn} />
     </div>
   );
 }
