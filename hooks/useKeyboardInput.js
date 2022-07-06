@@ -10,7 +10,6 @@ export const useKeyboardInput = (keysToListen = []) => {
       lowerCaseArray.push(lowerCaseKey);
       hookReturn[lowerCaseKey] = false;
     });
-
     return {
       lowerCaseArray,
       hookReturn,
@@ -25,6 +24,7 @@ export const useKeyboardInput = (keysToListen = []) => {
       if (getKeys().lowerCaseArray.includes(lowerKey)) {
         setPressedKeys((keysPressed) => ({ ...keysPressed, [lowerKey]: true }));
       }
+      console.log(keysPressed);
     };
     const handleKeyUp = (e) => {
       const lowerKey = e.key.toLowerCase();

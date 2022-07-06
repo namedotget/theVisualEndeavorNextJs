@@ -26,6 +26,9 @@ export const Player = () => {
       friction: 0,
     },
   }));
+
+  const playerPosition = useRef([0, 1, 0]);
+
   /** Bullets */
   const [bullets, setBullets] = useState([]);
 
@@ -50,6 +53,7 @@ export const Player = () => {
 
   useEffect(() => {
     api.velocity.subscribe((v) => (state.current.vel = v));
+    api.position.subscribe((v) => (playerPosition.current = v), []);
   }, [api]);
 
   /** Player loop */
@@ -103,9 +107,9 @@ export const Player = () => {
     );
     /** Updates camera position */
     camera.position.set(
-      sphereRef.current.position.x,
-      sphereRef.current.position.y + 1,
-      sphereRef.current.position.z
+      playerPosition.current[0],
+      playerPosition.current[1] + 1,
+      playerPosition.current[2]
     );
 
     /** Handles jumping */

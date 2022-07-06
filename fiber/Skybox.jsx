@@ -7,7 +7,7 @@ export const Skybox = () => {
 
   useEffect(() => {
     scene.background = new CubeTextureLoader()
-      .setPath("textures/skybox/")
+      .setPath("/textures/skybox/")
       .load([
         "left.bmp",
         "right.bmp",
