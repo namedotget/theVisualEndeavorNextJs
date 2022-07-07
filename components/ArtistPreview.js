@@ -1,5 +1,21 @@
-import { classes } from "./css/artist-preview.module.css";
+import classes from "./styles/artist-preview.module.css";
+import Link from "next/link";
 
-function ArtistPreview() {}
+//props = artist
+function ArtistPreview(props) {
+  const { artist } = props;
+  const path = `/artists/${artist.id}`;
+
+  return (
+    <div className={classes.artistContain}>
+      <Link href={path}>
+        <img className={classes.img} src={artist.profileImg} />
+      </Link>
+      <Link href={path}>
+        <div className={classes.name}>{artist.name}</div>
+      </Link>
+    </div>
+  );
+}
 
 export default ArtistPreview;

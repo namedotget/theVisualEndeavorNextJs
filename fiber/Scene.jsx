@@ -12,10 +12,11 @@ import { Plane } from "./Plane";
 import { Player } from "./Player";
 import { Skybox } from "./Skybox";
 import { Cube } from "./Cube";
+import { ArtImage } from "./ArtImage";
 
 extend({ PointerLockControls });
 
-export const Scene = () => {
+export const Scene = (props) => {
   const { camera, gl } = useThree();
   const controls = useRef();
 
@@ -72,6 +73,11 @@ export const Scene = () => {
         <Cube position={[0, 0, 5]} type={"Static"} />
         <Cube position={[0, 0, 5.5]} type={"Static"} />
         <Cube position={[0, 0.5, 5.5]} type={"Static"} />
+        <ArtImage
+          position={[0, 1.5, 2]}
+          type={"Static"}
+          image={"../room-preview.jpg"}
+        />
       </Physics>
     </>
   );

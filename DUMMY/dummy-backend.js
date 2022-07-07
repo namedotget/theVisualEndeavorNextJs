@@ -6,24 +6,54 @@ const DUMMY_DATA = {
   artists: {
     a1: {
       name: "Colin",
+      bio: "I like to make shaders with GLSL ! ",
+      profileImg: "/room-preview.jpg",
       links: {
-        twitter: "https://www.twitter.com",
-        instagram: "https://www.instagram.com",
+        twitter: "https://twitter.com/namedotget",
+        instagram: "https://www.instagram.com/ccolinfosterr/",
         website: "https://www.neekoart.netlify.app",
       },
       artwork: {
         images: [
-          { aid: "a1-img0", src: "./files/images/a1-img0.png" },
-          { aid: "a1-img1", src: "./files/images/a1-img1.png" },
-          { aid: "a1-img2", src: "./files/images/a1-img2.png" },
-          { aid: "a1-img3", src: "./files/images/a1-img3.png" },
-          { aid: "a1-img4", src: "./files/images/a1-img4.png" },
+          { aid: "a1-img0", src: "../files/images/a1-img0.png" },
+          { aid: "a1-img1", src: "../files/images/a1-img1.jpg" },
+          { aid: "a1-img2", src: "../files/images/a1-img2.jpg" },
+          { aid: "a1-img3", src: "../files/images/a1-img3.jpg" },
+          { aid: "a1-img4", src: "../files/images/a1-img4.png" },
         ],
         shaders: [
           {
             aid: "a1-sha0",
-            fragment: ".files/images/a1-sha0-fragment.glsl.js",
-            vertex: ".files/images/a1-sha0-vertex.glsl.js",
+            fragment: "../files/images/a1-sha0-fragment.glsl.js",
+            vertex: "../files/images/a1-sha0-vertex.glsl.js",
+          },
+        ],
+        models: [],
+        videos: [],
+      },
+    },
+    a2: {
+      name: "Neeko Art",
+      bio: "I like to make models in blender",
+      profileImg: "/room-preview.jpg",
+      links: {
+        twitter: "https://twitter.com/neeko_artist",
+        instagram: "https://www.instagram.com/art.neeko/",
+        website: "https://www.neekoart.netlify.app",
+      },
+      artwork: {
+        images: [
+          { aid: "a1-img0", src: "../files/images/a1-img0.png" },
+          { aid: "a1-img1", src: "../files/images/a1-img1.jpg" },
+          { aid: "a1-img2", src: "../files/images/a1-img2.jpg" },
+          { aid: "a1-img3", src: "../files/images/a1-img3.jpg" },
+          { aid: "a1-img4", src: "../files/images/a1-img4.png" },
+        ],
+        shaders: [
+          {
+            aid: "a1-sha0",
+            fragment: "../files/images/a1-sha0-fragment.glsl.js",
+            vertex: "../files/images/a1-sha0-vertex.glsl.js",
           },
         ],
         models: [],
@@ -34,9 +64,33 @@ const DUMMY_DATA = {
 };
 
 export const getAllArtistData = function () {
-  const ArtistData = [];
+  const allArtists = [];
 
   for (const data of Object.entries(DUMMY_DATA.artists)) {
-    console.log(data);
+    allArtists.push({
+      id: data[0],
+      ...data[1],
+    });
   }
+  return allArtists;
+};
+
+export const getAllImages = function () {
+  const allImages = [];
+  getAllArtistData().map((artist) =>
+    artist.artwork.images.map((img) => allImages.push(img))
+  );
+  return allImages;
+};
+
+export const getArtistById = function (id) {
+  return getAllArtistData().filter((artist) => artist.id === id);
+};
+
+export const getArtworkById = function (aid) {
+  const artistId = aid.slice(0, 2);
+
+  const [artist] = getArtistById(artistId);
+  const [img] = artist.artwork.images.filter((img) => img.aid === aid);
+  return img;
 };

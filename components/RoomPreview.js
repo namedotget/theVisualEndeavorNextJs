@@ -4,7 +4,7 @@ function RoomPreview(props) {
   return (
     <div className={classes.container}>
       <button className={classes.btn} onClick={props.onClick}>
-        <img className={classes.icon} src="./room-preview-icon.png" />
+        {/* <img className={classes.icon} src="./room-preview-icon.png" /> */}
       </button>
       <img className={classes.img} src="./room-preview.jpg" />
     </div>

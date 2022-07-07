@@ -1,4 +1,6 @@
 .canvas {
+  position: static;
+  top: 0%;
   z-index: -2;
   height: 100%;
 }

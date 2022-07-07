@@ -1,3 +1,5 @@
+import classes from "./styles/artwork-preview.module.css";
+
 function ArtworkPreview() {
   return (
     <div>

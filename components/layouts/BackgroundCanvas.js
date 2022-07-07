@@ -1,6 +1,6 @@
 import classes from "./background-canvas.module.css";
-import vertex from "../../DUMMY/files/shaders/a1-sha0-vertex.glsl";
-import fragment from "../../DUMMY/files/shaders/a1-sha0-fragment.glsl.js";
+import vertex from "../../public/files/shaders/a1-sha0-vertex.glsl";
+import fragment from "../../public/files/shaders/a1-sha0-fragment.glsl.js";
 
 import React, { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
