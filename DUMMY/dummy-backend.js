@@ -7,7 +7,7 @@ const DUMMY_DATA = {
     a1: {
       name: "Colin",
       bio: "I like to make shaders with GLSL ! ",
-      profileImg: "/room-preview.jpg",
+      profileImage: "/room-preview.jpg",
       links: {
         twitter: "https://twitter.com/namedotget",
         instagram: "https://www.instagram.com/ccolinfosterr/",
@@ -15,11 +15,31 @@ const DUMMY_DATA = {
       },
       artwork: {
         images: [
-          { aid: "a1-img0", src: "../files/images/a1-img0.png" },
-          { aid: "a1-img1", src: "../files/images/a1-img1.jpg" },
-          { aid: "a1-img2", src: "../files/images/a1-img2.jpg" },
-          { aid: "a1-img3", src: "../files/images/a1-img3.jpg" },
-          { aid: "a1-img4", src: "../files/images/a1-img4.png" },
+          {
+            aid: "a1-img0",
+            src: "../files/images/a1-img0.png",
+            name: "name-of-img",
+          },
+          {
+            aid: "a1-img1",
+            src: "../files/images/a1-img1.jpg",
+            name: "name-of-img",
+          },
+          {
+            aid: "a1-img2",
+            src: "../files/images/a1-img2.jpg",
+            name: "name-of-img",
+          },
+          {
+            aid: "a1-img3",
+            src: "../files/images/a1-img3.jpg",
+            name: "name-of-img",
+          },
+          {
+            aid: "a1-img4",
+            src: "../files/images/a1-img4.png",
+            name: "name-of-img",
+          },
         ],
         shaders: [
           {
@@ -35,7 +55,7 @@ const DUMMY_DATA = {
     a2: {
       name: "Neeko Art",
       bio: "I like to make models in blender",
-      profileImg: "/room-preview.jpg",
+      profileImage: "/room-preview.jpg",
       links: {
         twitter: "https://twitter.com/neeko_artist",
         instagram: "https://www.instagram.com/art.neeko/",
@@ -43,11 +63,41 @@ const DUMMY_DATA = {
       },
       artwork: {
         images: [
-          { aid: "a1-img0", src: "../files/images/a1-img0.png" },
-          { aid: "a1-img1", src: "../files/images/a1-img1.jpg" },
-          { aid: "a1-img2", src: "../files/images/a1-img2.jpg" },
-          { aid: "a1-img3", src: "../files/images/a1-img3.jpg" },
-          { aid: "a1-img4", src: "../files/images/a1-img4.png" },
+          {
+            aid: "a2-img0",
+            src: "../files/images/a1-img0.png",
+            name: "name-of-img",
+          },
+          {
+            aid: "a2-img1",
+            src: "../files/images/a1-img1.jpg",
+            name: "name-of-img",
+          },
+          {
+            aid: "a2-img2",
+            src: "../files/images/a1-img2.jpg",
+            name: "name-of-img",
+          },
+          {
+            aid: "a2-img3",
+            src: "../files/images/a1-img3.jpg",
+            name: "name-of-img",
+          },
+          {
+            aid: "a2-img4",
+            src: "../files/images/a1-img4.png",
+            name: "name-of-img",
+          },
+          {
+            aid: "a2-img5",
+            src: "../files/images/test.jpg",
+            name: "name-of-img",
+          },
+          {
+            aid: "a2-img6",
+            src: "../files/images/test1.jpeg",
+            name: "name-of-img",
+          },
         ],
         shaders: [
           {
@@ -80,6 +130,7 @@ export const getAllImages = function () {
   getAllArtistData().map((artist) =>
     artist.artwork.images.map((img) => allImages.push(img))
   );
+
   return allImages;
 };
 

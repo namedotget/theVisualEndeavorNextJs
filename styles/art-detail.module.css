@@ -1,0 +1,22 @@
+.artDetailContain {
+  padding: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  background-color: blue;
+}
+
+.artwork {
+  border-radius: 50px;
+}
+
+.artistName {
+  font-size: 3rem;
+}
+
+.artName {
+  font-size: 7rem;
+}

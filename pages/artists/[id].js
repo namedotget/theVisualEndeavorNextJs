@@ -1,7 +1,8 @@
 import classes from "../../styles/artist-detail.module.css";
 import Link from "next/link";
 import { getAllArtistData, getArtistById } from "../../DUMMY/dummy-backend";
-import UserArtworkList from "../../components/UserArtworkList";
+
+import PaginatedUserArt from "../../components/UserArtworkList";
 
 function ArtistDetailPage(props) {
   const artist = props.selectedArtist;
@@ -11,7 +12,7 @@ function ArtistDetailPage(props) {
     <div className="pgContain">
       <div className={classes.artistDetailContain}>
         <div className={classes.profile}>
-          <img className={classes.img} src={artist.profileImg} />
+          <img className={classes.img} src={artist.profileImage} />
 
           <div className={classes.info}>
             <p className={classes.name}>{artist.name}</p>
@@ -27,7 +28,7 @@ function ArtistDetailPage(props) {
           </div>
         </div>
         <div className={classes.userArtwork}>
-          <UserArtworkList images={artist.artwork.images} />
+          <PaginatedUserArt images={artist.artwork.images} />
         </div>
       </div>
     </div>

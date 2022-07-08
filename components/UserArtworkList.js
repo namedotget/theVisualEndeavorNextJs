@@ -1,9 +1,11 @@
 import classes from "./styles/user-artwork-list.module.css";
-
+import ReactPaginate from "react-paginate";
+import React, { useEffect, useState } from "react";
 import UserArtwork from "./UserArtwork";
 
-function UserArtworkList(props) {
+function PaginatedUserArt(props) {
   const { images } = props;
+
   return (
     <div className={classes.list}>
       {images.map((img) => (
@@ -13,4 +15,4 @@ function UserArtworkList(props) {
   );
 }
 
-export default UserArtworkList;
+export default PaginatedUserArt;

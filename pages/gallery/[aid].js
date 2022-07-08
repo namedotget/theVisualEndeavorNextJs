@@ -1,23 +1,30 @@
-import classes from "../../styles/artist-detail.module.css";
+import classes from "../../styles/art-detail.module.css";
 import Link from "next/link";
 import {
-  getAllArtistData,
   getAllImages,
+  getArtistById,
   getArtworkById,
 } from "../../DUMMY/dummy-backend";
 import UserArtworkList from "../../components/UserArtworkList";
 
 function ArtworkDetailPage(props) {
   const artwork = props.selectedArtwork;
-
-  return <div className="pgContain"></div>;
+  const artist = props.selectedArtist;
+  return (
+    <div className="pgContain">
+      <div className={classes.artDetailContain}>
+        <h1 className={classes.artName}>{artwork.name}</h1>
+        <h2 className={classes.artistName}>Created By: {artist.name}</h2>
+        <img className={classes.artwork} src={artwork.src} />
+      </div>
+    </div>
+  );
 }
 
 export async function getStaticProps(context) {
   const artworkId = context.params.aid;
-
   const artwork = getArtworkById(artworkId);
-  console.log("ARTWORK", artwork);
+  const [artist] = getArtistById(artworkId.slice(0, 2));
 
   //add this condition to avoid request getting kicked to [..slug]
   //   if (!artist) {
@@ -28,6 +35,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       selectedArtwork: artwork,
+      selectedArtist: artist,
     },
     revalidate: 60,
   };
