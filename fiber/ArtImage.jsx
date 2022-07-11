@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useBox } from "@react-three/cannon";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader.js";
@@ -9,7 +9,7 @@ export const ArtImage = (props) => {
   //Physics//
   const [cubeRef] = useBox(() => ({
     mass: 1,
-    args: [5, 3, 0.5],
+    args: [5.5, 3.5, 1],
     material: {
       friction: 1,
       restitution: 0,

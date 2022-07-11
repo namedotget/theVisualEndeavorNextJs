@@ -1,0 +1,11 @@
+Model Information:
+* title:	iPod (Scroll Wheel)
+* source:	https://sketchfab.com/3d-models/ipod-scroll-wheel-95c2cdb3812149c88daf1dc8431d1e05
+* author:	Antonio Gomez (https://sketchfab.com/antonio-gomez)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "iPod (Scroll Wheel)" (https://sketchfab.com/3d-models/ipod-scroll-wheel-95c2cdb3812149c88daf1dc8431d1e05) by Antonio Gomez (https://sketchfab.com/antonio-gomez) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

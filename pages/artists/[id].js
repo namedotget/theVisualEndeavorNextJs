@@ -8,6 +8,13 @@ function ArtistDetailPage(props) {
   const artist = props.selectedArtist;
   console.log(artist);
 
+  if (!artist) {
+    return (
+      <div className="pgContain">
+        <h1> Loading...</h1>
+      </div>
+    );
+  }
   return (
     <div className="pgContain">
       <div className={classes.artistDetailContain}>
@@ -41,12 +48,11 @@ export async function getStaticProps(context) {
   const [artist] = getArtistById(artistId);
 
   //add this condition to avoid request getting kicked to [..slug]
-  //   if (!artist) {
-  //     return {
-  //       notFound: true,
-  //     };
-  //   }
-  console.log(artist);
+  if (!artist) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: {
       selectedArtist: artist,
@@ -61,10 +67,9 @@ export async function getStaticPaths() {
   const paths = artists.map((artist) => ({
     params: { id: artist.id },
   }));
-  console.log("paths", paths);
   return {
     paths: paths,
-    fallback: false,
+    fallback: "blocking",
     //anything thats not a path will recieve a 404//
   };
 }

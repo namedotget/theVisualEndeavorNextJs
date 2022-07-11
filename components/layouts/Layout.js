@@ -1,21 +1,26 @@
-import { useRouter } from "next/router";
 import { Fragment } from "react";
 import BackgroundCanvas from "./BackgroundCanvas";
 import LogoCanvas from "./LogoCanvas";
 import MainFooter from "./MainFooter";
 import MainHeader from "./MainHeader";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
+function DisableRender() {
+  useFrame(() => null, 500);
+  console.log("test");
+}
 
 function Layout(props) {
-  const router = useRouter();
+  const { ref, inView } = useInView();
 
   return (
-    <Fragment>
+    <>
       <LogoCanvas />
-      <BackgroundCanvas />
+      <BackgroundCanvas>{!inView && <DisableRender />}</BackgroundCanvas>
       <MainHeader />
       <main>{props.children}</main>
       <MainFooter />
-    </Fragment>
+    </>
   );
 }
 

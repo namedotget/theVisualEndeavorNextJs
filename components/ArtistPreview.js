@@ -7,14 +7,13 @@ function ArtistPreview(props) {
   const path = `/artists/${artist.id}`;
 
   return (
-    <div className={classes.artistContain}>
-      <Link href={path}>
+    <Link href={path}>
+      <div className={classes.artistContain}>
         <img className={classes.img} src={artist.profileImage} />
-      </Link>
-      <Link href={path}>
+
         <div className={classes.name}>{artist.name}</div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }
 

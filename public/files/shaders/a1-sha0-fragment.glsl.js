@@ -1,8 +1,7 @@
 const fragment = `
 uniform float u_time;
-uniform float u_var;
-uniform vec3 u_meshR;
 varying vec2 vUv;
+#include <fog_pars_fragment>
 
 
 float box(vec3 p, vec3 s) {
@@ -77,8 +76,10 @@ void main(){
         1.0);
     
     float gamma = 3.1;
-
+    
+    #include <fog_fragment>
     gl_FragColor.rgb = pow(gl_FragColor.rgb, vec3(1.0/gamma));
+
 }
 `;
 export default fragment;

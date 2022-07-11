@@ -13,7 +13,10 @@ import { Player } from "./Player";
 import { Skybox } from "./Skybox";
 import { Cube } from "./Cube";
 import { ArtImage } from "./ArtImage";
-
+import { ArtShader } from "./ArtShader";
+import { Model } from "./Model";
+import fragment0 from "../public/files/shaders/a1-sha0-fragment.glsl";
+import vertex0 from "../public/files/shaders/a1-sha0-vertex.glsl";
 extend({ PointerLockControls });
 
 export const Scene = (props) => {
@@ -78,7 +81,19 @@ export const Scene = (props) => {
           type={"Static"}
           image={"../room-preview.jpg"}
         />
+        <ArtShader
+          position={[4, 1.5, 2]}
+          type={"Static"}
+          vertex={vertex0}
+          fragment={fragment0}
+        />
+        <Model
+          type={"Static"}
+          gltf={"../textures/logo.gltf"}
+          position={[3, 1, -4]}
+        />
       </Physics>
+      <fogExp2 attach="fog" args={["black", 0.18]} />
     </>
   );
 };

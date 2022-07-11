@@ -11,7 +11,7 @@ export const Bullet = (props) => {
 
   return (
     <mesh ref={sphereRef} castShadow>
-      <sphereBufferGeometry args={[0.1, 32, 32]} />
+      <sphereBufferGeometry args={[0.25, 32, 32]} />
       <meshLambertMaterial color="hotpink" />
     </mesh>
   );

@@ -1,7 +1,7 @@
 .canvas {
   position: absolute;
   top: 0%;
-  height: 15rem;
+  height: 40vh;
   width: 100%;
   z-index: -5;
 }
