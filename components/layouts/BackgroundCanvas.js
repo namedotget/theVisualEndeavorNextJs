@@ -2,33 +2,25 @@ import classes from "./background-canvas.module.css";
 import vertex from "../../public/files/shaders/a1-sha0-vertex.glsl";
 import fragment from "../../public/files/shaders/a1-sha0-fragment.glsl.js";
 
-import React, { useRef, useState } from "react";
+import React, { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-
+import { useGLTF } from "@react-three/drei";
+import LogoCanvas from "./LogoCanvas";
+import Link from "next/link";
 //Camera//
-
 function Background(...props) {
-  const shader = useRef(null);
+  const shader = useRef();
 
   // Set up state for the hovered and active state
-  const [hovered, setHover] = useState(false);
-  const [active, setActive] = useState(false);
   // Subscribe this component to the render-loop, rotate the mesh every frame
   useFrame(({ clock, mouse }) => {
-    if (shader.current) {
-      shader.current.uniforms.u_time = { value: clock.getElapsedTime() };
-    }
+    shader.current.uniforms.u_time = { value: clock.getElapsedTime() };
+    console.log(shader);
   });
 
   // Return view, these are regular three.js elements expressed in JSX
   return (
-    <mesh
-      {...props}
-      scale={active ? 1.5 : 1}
-      onClick={(event) => setActive(!active)}
-      onPointerOver={(event) => setHover(true)}
-      onPointerOut={(event) => setHover(false)}
-    >
+    <mesh {...props} scale={1}>
       <planeBufferGeometry args={[100, 100]} />
       <shaderMaterial
         ref={shader}
@@ -45,14 +37,18 @@ function Background(...props) {
 
 function BackgroundCanvas(props) {
   return (
-    <div>
-      <Canvas className={classes.canvas}>
+    <div className={classes.canvas}>
+      <Canvas
+        className={classes.background}
+        camera={{ fov: 75, position: [0, 0, 4] }}
+      >
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
-        <Background position={[0, 0, 0]} />
+        {/* <Background position={[0, 0, -20]} /> */}
+        <Background />
       </Canvas>
-      {props.children}
     </div>
   );
 }
+
 export default BackgroundCanvas;

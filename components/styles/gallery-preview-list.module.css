@@ -6,6 +6,6 @@
   align-items: center;
   flex-direction: column;
   gap: 2rem;
-  background-color: blue;
+  background-color: transparent;
   border-radius: 50px;
 }

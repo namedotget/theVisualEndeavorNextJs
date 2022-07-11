@@ -7,7 +7,6 @@ import RoomPreview from "../components/RoomPreview";
 
 export default function HomePage() {
   const router = useRouter();
-
   const handleRoomPreviewBtn = function () {
     router.push("/room");
   };
