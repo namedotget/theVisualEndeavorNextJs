@@ -147,12 +147,12 @@ function CameraController() {
 function LogoCanvas(props) {
   return (
     <div className={classes.contain}>
-      <Link href="/">
+      <Link href="/" className="logoLink">
         <Canvas
           className={classes.canvas}
           camera={{ fov: 75, position: [0, 5, 57] }}
         >
-          <CameraController />
+          {/* <CameraController /> */}
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
           {/* <Background position={[0, 0, -20]} /> */}
