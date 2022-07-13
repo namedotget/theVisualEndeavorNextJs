@@ -1,3 +1,4 @@
+import { Swarm } from "../fiber/Particles";
 import classes from "../styles/about.module.css";
 
 function AboutPage() {

@@ -5,7 +5,7 @@ export const Bullet = (props) => {
   /** Bullet collider */
   const [sphereRef] = useSphere(() => ({
     mass: 5,
-    args: [0.1],
+    args: [0.25],
     ...props,
   }));
 

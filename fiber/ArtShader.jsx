@@ -25,7 +25,7 @@ export const ArtShader = (props) => {
   const { fragment, vertex } = props;
   return (
     <mesh ref={cubeRef} castShadow layers={props.layers}>
-      <boxBufferGeometry args={[5, 3, 0.5]} />
+      <boxBufferGeometry args={[5, 4, 0.5]} />
       <shaderMaterial
         ref={shader}
         attach="material"
@@ -36,7 +36,7 @@ export const ArtShader = (props) => {
           UniformsLib["fog"],
 
           {
-            someCustomUniform: { u_time: { value: 0.5 } },
+            customUniform: { u_time: { value: 0.5 } },
           },
         ])}
       />

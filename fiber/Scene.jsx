@@ -15,11 +15,14 @@ import { Cube } from "./Cube";
 import { ArtImage } from "./ArtImage";
 import { ArtShader } from "./ArtShader";
 import { Model } from "./Model";
+import { Swarm } from "./Particles";
 import fragment0 from "../public/files/shaders/a1-sha0-fragment.glsl";
 import vertex0 from "../public/files/shaders/a1-sha0-vertex.glsl";
+import { initFog } from "./scene-config";
 extend({ PointerLockControls });
 
 export const Scene = (props) => {
+  initFog();
   const { camera, gl } = useThree();
   const controls = useRef();
 
@@ -46,10 +49,17 @@ export const Scene = (props) => {
       {/** Pointer lock */}
       <pointerLockControls ref={controls} args={[camera, gl.domElement]} />
       {/** Lighting */}
-      <directionalLight position={[3, 0, 3]} intensity={0.5} castShadow />
+      <directionalLight position={[0, 5, -5]} intensity={0.2} castShadow />
       <pointLight position={[0, 0, -3]} intensity={0.6} castShadow />
-      <pointLight position={[0, 0, 4]} intensity={0.6} castShadow />
-      <ambientLight intensity={0.6} />
+      <pointLight position={[0, 0, 4]} intensity={0.8} castShadow />
+      <pointLight position={[10, 0, 4]} intensity={0.8} castShadow />
+      <pointLight
+        position={[-5, 0, 4]}
+        intensity={0.8}
+        castShadow
+        fog={false}
+        color={"red"}
+      />
       {/** Physic objects */}
       <Physics
         gravity={[0, -9, 0]}
@@ -57,10 +67,10 @@ export const Scene = (props) => {
         iterations={50}
         broadphase={"SAP"}
       >
-        {/** Player */}
-        <Player />
         {/** Plane */}
         <Plane />
+        {/** Player */}
+        <Player />
         {/** Cubes */}
         <Cube position={[0, 0, -5]} layers={1} />
         <Cube position={[-0.6, 0, -5]} />
@@ -93,7 +103,7 @@ export const Scene = (props) => {
           position={[3, 1, -4]}
         />
       </Physics>
-      <fogExp2 attach="fog" args={["black", 0.18]} />
+      <fogExp2 attach="fog" args={["slategrey", 0.25]} />
     </>
   );
 };

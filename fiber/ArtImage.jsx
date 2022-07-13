@@ -22,9 +22,9 @@ export const ArtImage = (props) => {
   // const img = useLoader(TextureLoader, picture);
   const map = useLoader(TextureLoader, props.image);
   return (
-    <mesh ref={cubeRef} castShadow layers={props.layers}>
+    <mesh ref={cubeRef} castShadow={true} layers={props.layers}>
       <boxBufferGeometry args={[5, 3, 0.25]} />
-      <meshLambertMaterial map={map} />
+      <meshLambertMaterial castShadow map={map} fog={true} />
     </mesh>
   );
 };

@@ -16,9 +16,7 @@ function Background(...props) {
   // Set up state for the hovered and active state
   // Subscribe this component to the render-loop, rotate the mesh every frame
 
-  useFrame(({ clock, mouse }) => {
-    shader.current.uniforms.u_time = { value: clock.getElapsedTime() * 0.25 };
-  });
+  useFrame(({ clock, mouse }) => {});
 
   // Return view, these are regular three.js elements expressed in JSX
   return (
@@ -30,7 +28,7 @@ function Background(...props) {
         vertexShader={vertex}
         fragmentShader={fragment}
         uniforms={{
-          u_time: { value: 0.5 },
+          u_time: { value: 280.0 },
         }}
       />
     </mesh>

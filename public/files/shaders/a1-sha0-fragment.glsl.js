@@ -69,7 +69,7 @@ void main(){
     col.zy += sin(uv+-u_time)*0.25;
     col.z = clamp(sin(uv.x*uv.y-u_time*0.05),0.5,1.0);
     
-    
+   
     
     gl_FragColor = vec4(
         col,
@@ -78,8 +78,8 @@ void main(){
     float gamma = 3.1;
     
     #include <fog_fragment>
+    
     gl_FragColor.rgb = pow(gl_FragColor.rgb, vec3(1.0/gamma));
-
 }
 `;
 export default fragment;
