@@ -12,7 +12,7 @@ function DisableRender() {
 
 function Layout(props) {
   const { ref, inView } = useInView();
-
+  console.log(props.children);
   return (
     <>
       <LogoCanvas />

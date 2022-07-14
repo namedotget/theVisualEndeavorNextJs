@@ -32,7 +32,7 @@ export const Scene = (props) => {
     camera.layers.enable(1);
   }, [camera]);
 
-  function quit(e) {
+  function keyQuit(e) {
     if (e.key === "q") {
       //Remove all modals//
       document.querySelector(".roomModal")?.remove();
@@ -42,20 +42,19 @@ export const Scene = (props) => {
       const logo = document.querySelector(".logo-canvas_canvas__3WjCv");
       console.log(logo);
       logo.click();
-      document.removeEventListener("keypress", quit);
+      document.removeEventListener("keypress", keyQuit);
     }
   }
 
   useEffect(() => {
     const handleFocus = () => {
-      console.log(controls);
       controls.current.lock();
     };
     document.addEventListener("click", handleFocus);
+
+    document.addEventListener("keypress", keyQuit);
+
     StartModal();
-
-    document.addEventListener("keypress", quit);
-
     return () => {
       document.removeEventListener("click", handleFocus);
     };
@@ -63,67 +62,71 @@ export const Scene = (props) => {
 
   return (
     <>
-      
-        {/** Skybox */}
-        {/* <Skybox /> */}
-        {/** Pointer lock */}
-        <pointerLockControls ref={controls} args={[camera, gl.domElement]} />
-        {/** Lighting */}
-        <directionalLight position={[0, 5, -5]} intensity={0.2} castShadow />
-        <pointLight position={[0, 0, -3]} intensity={0.6} castShadow />
-        <pointLight position={[0, 0, 4]} intensity={0.8} castShadow />
-        <pointLight position={[10, 0, 4]} intensity={0.8} castShadow />
-        <pointLight
-          position={[-5, 0, 4]}
-          intensity={0.8}
-          castShadow
-          fog={false}
-          color={"red"}
+      {/** Skybox */}
+      {/* <Skybox /> */}
+      {/** Pointer lock */}
+      <pointerLockControls ref={controls} args={[camera, gl.domElement]} />
+      {/** Lighting */}
+      <directionalLight position={[0, 5, -5]} intensity={0.2} castShadow />
+      <pointLight position={[0, 0, -3]} intensity={0.6} castShadow />
+      <pointLight position={[0, 0, 4]} intensity={0.8} castShadow />
+      <pointLight position={[10, 0, 4]} intensity={0.8} castShadow />
+      <pointLight
+        position={[-5, 0, 4]}
+        intensity={0.8}
+        castShadow
+        fog={false}
+        color={"red"}
+      />
+      {/** Physic objects */}
+      <Physics
+        gravity={[0, -9, 0]}
+        tolerance={0}
+        iterations={50}
+        broadphase={"SAP"}
+      >
+        {/** Plane */}
+        <Plane />
+        {/** Player */}
+        <Player />
+        {/** Cubes */}
+        <Cube position={[0, 0, -5]} layers={1} />
+        <Cube position={[-0.6, 0, -5]} />
+        <Cube position={[0.6, 0, -5]} />
+        <Cube position={[-0.3, 0.5, -5]} />
+        <Cube position={[0.3, 0.5, -5]} />
+        <Cube position={[0, 1, -5]} />
+        <Cube position={[-5, 0, -5]} />
+        <Cube position={[-5, 0.5, -5]} />
+        <Cube position={[-5, 1, -5]} />
+        <Cube position={[-5, 1.5, -5]} />
+        {/** Static cubes */}
+        <Cube position={[0, 0, 5]} type={"Static"} />
+        <Cube position={[0, 0, 5.5]} type={"Static"} />
+        <Cube position={[0, 0.5, 5.5]} type={"Static"} />
+        <ArtImage
+          position={[-3, 1.5, 2]}
+          type={"Static"}
+          image={"../room-preview.jpg"}
         />
-        {/** Physic objects */}
-        <Physics
-          gravity={[0, -9, 0]}
-          tolerance={0}
-          iterations={50}
-          broadphase={"SAP"}
-        >
-          {/** Plane */}
-          <Plane />
-          {/** Player */}
-          <Player />
-          {/** Cubes */}
-          <Cube position={[0, 0, -5]} layers={1} />
-          <Cube position={[-0.6, 0, -5]} />
-          <Cube position={[0.6, 0, -5]} />
-          <Cube position={[-0.3, 0.5, -5]} />
-          <Cube position={[0.3, 0.5, -5]} />
-          <Cube position={[0, 1, -5]} />
-          <Cube position={[-5, 0, -5]} />
-          <Cube position={[-5, 0.5, -5]} />
-          <Cube position={[-5, 1, -5]} />
-          <Cube position={[-5, 1.5, -5]} />
-          {/** Static cubes */}
-          <Cube position={[0, 0, 5]} type={"Static"} />
-          <Cube position={[0, 0, 5.5]} type={"Static"} />
-          <Cube position={[0, 0.5, 5.5]} type={"Static"} />
-          <ArtImage
-            position={[-3, 1.5, 2]}
-            type={"Static"}
-            image={"../room-preview.jpg"}
-          />
-          <ArtShader
-            position={[4, 1.5, 2]}
-            type={"Static"}
-            vertex={vertex0}
-            fragment={fragment0}
-          />
-          <Model
-            type={"Static"}
-            gltf={"../textures/logo.gltf"}
-            position={[3, 1, -4]}
-          />
-        </Physics>
-        <fogExp2 attach="fog" args={["slategrey", 0.25]} />
+        <ArtImage
+          position={[-15, 1.5, 2]}
+          type={"Static"}
+          image={"../room-preview.jpg"}
+        />
+        <ArtShader
+          position={[4, 1.5, 2]}
+          type={"Static"}
+          vertex={vertex0}
+          fragment={fragment0}
+        />
+        <Model
+          type={"Static"}
+          gltf={"../textures/logo.gltf"}
+          position={[3, 1, -4]}
+        />
+      </Physics>
+      <fogExp2 attach="fog" args={[0x6d527d, 0.28]} />
     </>
   );
 };

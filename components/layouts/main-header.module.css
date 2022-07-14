@@ -4,7 +4,7 @@
 }
 .contain {
   position: absolute;
-  top: 10%;
+  top: 2%;
   left: 38%;
 }
 .header {
@@ -19,15 +19,16 @@
 }
 
 .navigation {
-  padding-right: 10rem;
   display: flex;
-  gap: 5rem;
+  flex-direction: column;
+  gap: 10%;
 }
 
 .navigation a {
   text-decoration: none;
   color: rgba(196, 142, 229, 0.688);
-  font-size: 150%;
+  font-size: 100%;
+  letter-spacing: 1px;
 }
 
 .header a:hover {

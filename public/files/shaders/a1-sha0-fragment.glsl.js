@@ -79,7 +79,7 @@ void main(){
     
     #include <fog_fragment>
     
-    gl_FragColor.rgb = pow(gl_FragColor.rgb, vec3(1.0/gamma));
+    // gl_FragColor.rgb = pow(gl_FragColor.rgb, vec3(1.0/gamma));
 }
 `;
 export default fragment;

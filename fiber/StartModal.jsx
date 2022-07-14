@@ -1,13 +1,19 @@
 function exitStartModal(e) {
+  const modal = document.querySelector(".roomStartModal");
   if (e.key === "e") {
-    console.log(e);
-    document.querySelector(".roomStartModal")?.remove();
-    document.querySelector(".crosshair").style.opacity = 1;
-    document.removeEventListener("keypress", exitStartModal);
+    modal.classList.toggle("fadeOut");
+    //Remove modal, reset crosshair after fadeOut, remove fadeOut
+    setTimeout(() => {
+      modal?.remove();
+      document.querySelector(".crosshair").style.opacity = 1;
+      document.removeEventListener("keypress", exitStartModal);
+      modal.classList.toggle("fadeOut");
+    }, 500);
   }
 }
 
 export function StartModal() {
+  document.addEventListener("keypress", exitStartModal);
   document.querySelector(".crosshair").style.opacity = 0;
 
   const modal = document.createElement("div");
@@ -18,7 +24,7 @@ export function StartModal() {
   title.className = "roomStartTitle";
   title.textContent = "Welcome to the Visual Endeavor !";
   const des1 = document.createElement("h3");
-  des1.className = "ro1";
+  des1.className = "roomStartDescription";
   des1.textContent = `< press 'q' to quit >`;
   const des2 = document.createElement("h3");
   des2.className = "roomStartDescription";
@@ -30,6 +36,4 @@ export function StartModal() {
   modal.appendChild(des1);
   modal.appendChild(des2);
   modal.appendChild(des3);
-
-  document.addEventListener("keypress", exitStartModal);
 }

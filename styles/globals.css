@@ -19,7 +19,7 @@ body {
 
 .pgContain {
   width: 100%;
-  padding-top: 8rem;
+  padding-top: 4rem;
   padding-bottom: 5rem;
   display: flex;
   justify-content: center;
@@ -53,16 +53,19 @@ body {
 .roomStartModal {
   padding: 2.5rem;
   position: absolute;
-  top: 5%;
+  top: 30%;
   left: 8%;
   width: 75%;
-  height: 75%;
+  height: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
   background: transparent;
   backdrop-filter: blur(45px);
   border-radius: 20px;
+  animation-name: animate-fade-in;
+  animation-timing-function: ease;
+  animation-duration: 2s;
 }
 
 .roomStartText {
@@ -75,32 +78,52 @@ body {
 }
 
 .roomModal {
-  padding: 1.5rem;
+  font-size: 150%;
+  text-align: center;
+  padding: 2.5rem;
   position: absolute;
-  top: 20%;
-  left: 20%;
+  top: 5vh;
+  left: 17%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1%;
   width: 60%;
-  height: 60%;
+  height: 60vh;
+
   border-radius: 20px;
   background: transparent;
   backdrop-filter: blur(45px);
+  animation-name: animate-fade-in;
+  animation-timing-function: ease;
+  animation-duration: 1s;
 }
 
-.roomModalText {
-  text-align: center;
-  color: pink;
+.roomModalTitle {
+  color: slategrey;
+  width: 100%;
+  height: 20%;
+}
+.roomModalArtist {
+  color: lightslategray;
   width: 100%;
   height: 20%;
 }
 
-.roomModalLink {
-  width: 5rem;
-  height: 5rem;
+.roomModalDescription {
+  color: white;
+  opacity: 0.6;
+}
+
+.roomModalImgContain {
+  padding-top: 2%;
+  display: flex;
+  gap: 2rem;
+}
+.roomModalImg {
+  width: 3rem;
+  height: 3rem;
 }
 
 .loading {
@@ -109,4 +132,30 @@ body {
   z-index: 5;
   width: 100vw;
   height: 100vh;
+}
+
+/* ANIMATIONS */
+
+/* Fade In */
+.fadeOut {
+  animation-name: animate-fade-out;
+  animation-timing-function: ease;
+  animation-duration: 0.5s;
+}
+
+@keyframes animate-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes animate-fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

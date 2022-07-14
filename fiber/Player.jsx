@@ -7,6 +7,7 @@ import { useMouseInput } from "../hooks/useMouseInput";
 import { useVariable } from "../hooks/useVariable";
 import { Bullet } from "./Bullet";
 import { Raycaster } from "three";
+import VirtualJoystick from "../hooks/useJoyStick";
 
 /** Player movement constants */
 const speed = 300;
@@ -35,10 +36,13 @@ export const Player = () => {
   /** Input hooks */
   const pressed = useKeyboardInput(["w", "a", "s", "d", " "]);
   const pressedMouse = useMouseInput();
+  const joystick = new VirtualJoystick();
 
   /** Converts the input state to ref so they can be used inside useFrame */
+
   const input = useVariable(pressed);
   const mouseInput = useVariable(pressedMouse);
+  const joyInput = useVariable(joystick);
 
   /** Player movement constants */
   const { camera, scene } = useThree();
@@ -61,6 +65,7 @@ export const Player = () => {
     /** Handles movement */
     const { w, s, a, d } = input.current;
     const space = input.current[" "];
+    const joy = joyInput.current;
 
     let velocity = new Vector3(0, 0, 0);
     let cameraDirection = new Vector3();
@@ -75,17 +80,17 @@ export const Player = () => {
 
     let [horizontal, vertical] = [0, 0];
 
-    if (w) {
-      vertical += 1;
+    if (w || joy.up()) {
+      vertical += 0.5;
     }
-    if (s) {
-      vertical -= 1;
+    if (s || joy.down()) {
+      vertical -= 0.5;
     }
-    if (d) {
-      horizontal += 1;
+    if (d || joy.right()) {
+      horizontal += 0.5;
     }
-    if (a) {
-      horizontal -= 1;
+    if (a || joy.left()) {
+      horizontal -= 0.5;
     }
 
     if (horizontal !== 0 && vertical !== 0) {

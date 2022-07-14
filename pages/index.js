@@ -1,10 +1,9 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-
+import { useHistory } from "react-router-dom";
 import classes from "../styles/home-page.module.css";
 
 import RoomPreview from "../components/RoomPreview";
-
 export default function HomePage() {
   const router = useRouter();
   const handleRoomPreviewBtn = function () {
