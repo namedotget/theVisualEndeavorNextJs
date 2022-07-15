@@ -147,7 +147,7 @@ export const Player = () => {
       .clone()
       .add(cameraDirection.clone().multiplyScalar(2));
 
-    if (mouseInput.current.left) {
+    if (mouseInput.current.right) {
       const now = Date.now();
       if (now >= state.current.timeToShoot) {
         state.current.timeToShoot = now + bulletCoolDown;

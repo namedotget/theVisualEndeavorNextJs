@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { useBox } from "@react-three/cannon";
-import { useFrame, useLoader } from "@react-three/fiber";
+import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 import { handleModalClick, handleModalKeys } from "./Modal";
 import { Detailed } from "@react-three/drei";
+import { Camera, LOD, Mesh, Vector3 } from "three";
 
 // Constants
 export const ArtImage = (props) => {
-  const pos = props.position;
+  const { artwork } = props;
   //Physics//
+
   const [cubeRef] = useBox(() => ({
-    mass: 1,
+    mass: 10,
     args: [5.5, 3.5, 0.75],
     material: {
       friction: 1,
@@ -19,27 +21,24 @@ export const ArtImage = (props) => {
     ...props,
   }));
 
-  function handleClick() {
+  ///LOD////
+
+  function handleLeftClick(e) {
     //open modal//
-    handleModalClick();
+    handleModalClick(e, artwork);
   }
 
   // const picture = require("../public/room-preview.jpg");
   //Load Images//
   // const img = useLoader(TextureLoader, picture);
-  const map = useLoader(TextureLoader, props.image);
+  const map = useLoader(TextureLoader, artwork.src);
+
   return (
-    <Detailed distances={[0, 15]}>
-      <mesh
-        ref={cubeRef}
-        castShadow={true}
-        layers={props.layers}
-        onClick={handleClick}
-      >
+    <Detailed ref={cubeRef} distances={[0, 12]} {...props}>
+      <mesh castShadow={true} layers={props.layers} onClick={handleLeftClick}>
         <boxBufferGeometry args={[5, 3, 0.5]} />
-        <meshLambertMaterial castShadow map={map} fog={true} />
+        <meshLambertMaterial castShadow map={map} />
       </mesh>
-      {/* if 15 or more away render :  */}
       <mesh></mesh>
     </Detailed>
   );

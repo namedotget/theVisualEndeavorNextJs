@@ -1,3 +1,4 @@
+// REACT
 import React, { Suspense, useEffect, useRef } from "react";
 
 // Physics
@@ -8,6 +9,7 @@ import { extend, useThree } from "@react-three/fiber";
 import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";
 
 // Prefabs
+import { initFog } from "./scene-config";
 import { Plane } from "./Plane";
 import { Player } from "./Player";
 import { Skybox } from "./Skybox";
@@ -17,9 +19,12 @@ import { ArtShader } from "./ArtShader";
 import { Model } from "./Model";
 import { StartModal } from "./StartModal";
 
+//SHADERS///
 import fragment0 from "../public/files/shaders/a1-sha0-fragment.glsl";
 import vertex0 from "../public/files/shaders/a1-sha0-vertex.glsl";
-import { initFog } from "./scene-config";
+
+import { ArtVideo } from "./ArtVideo";
+
 extend({ PointerLockControls });
 
 export const Scene = (props) => {
@@ -60,6 +65,11 @@ export const Scene = (props) => {
     };
   }, [gl]);
 
+  ///ARTIST DATA////
+  const { artists } = props;
+  const colinArt = artists[0].artwork;
+  const neekoArt = artists[1].artwork;
+
   return (
     <>
       {/** Skybox */}
@@ -70,14 +80,6 @@ export const Scene = (props) => {
       <directionalLight position={[0, 5, -5]} intensity={0.2} castShadow />
       <pointLight position={[0, 0, -3]} intensity={0.6} castShadow />
       <pointLight position={[0, 0, 4]} intensity={0.8} castShadow />
-      <pointLight position={[10, 0, 4]} intensity={0.8} castShadow />
-      <pointLight
-        position={[-5, 0, 4]}
-        intensity={0.8}
-        castShadow
-        fog={false}
-        color={"red"}
-      />
       {/** Physic objects */}
       <Physics
         gravity={[0, -9, 0]}
@@ -85,6 +87,7 @@ export const Scene = (props) => {
         iterations={50}
         broadphase={"SAP"}
       >
+        {/* ///////////WORLD //////////////////*/}
         {/** Plane */}
         <Plane />
         {/** Player */}
@@ -104,28 +107,57 @@ export const Scene = (props) => {
         <Cube position={[0, 0, 5]} type={"Static"} />
         <Cube position={[0, 0, 5.5]} type={"Static"} />
         <Cube position={[0, 0.5, 5.5]} type={"Static"} />
-        <ArtImage
-          position={[-3, 1.5, 2]}
-          type={"Static"}
-          image={"../room-preview.jpg"}
+
+        {/* ///////////CMF SCENE //////////////////*/}
+        <pointLight
+          position={[15, 8, -12]}
+          intensity={0.8}
+          castShadow
+          fog={false}
         />
         <ArtImage
-          position={[-15, 1.5, 2]}
+          position={[20, 1.5, -20]}
+          rotation={[0, -Math.PI / 4, 0]}
           type={"Static"}
           image={"../room-preview.jpg"}
+          pid={"p1"}
+          artwork={colinArt.images[0]}
+          artist="Colin"
         />
+
+        <ArtImage
+          position={[12, 1.5, -20]}
+          rotation={[0, Math.PI / 4, 0]}
+          type={"Static"}
+          image={"../instagram-icon.png"}
+          pid={"p2"}
+          artwork={colinArt.images[1]}
+          artist="Colin"
+        />
+
         <ArtShader
-          position={[4, 1.5, 2]}
+          position={[22, 1.5, -14]}
+          rotation={[0, -Math.PI / 2, 0]}
           type={"Static"}
-          vertex={vertex0}
+          artwork={colinArt.shaders[0]}
           fragment={fragment0}
+          vertex={vertex0}
         />
-        <Model
+
+        <ArtVideo
+          position={[10, 1.5, -14]}
+          rotation={[0, Math.PI / 2, 0]}
           type={"Static"}
+          artwork={colinArt.videos[0]}
+        />
+
+        <Model
           gltf={"../textures/logo.gltf"}
-          position={[3, 1, -4]}
+          position={[15, 0.5, -12]}
+          gravity={[]}
         />
       </Physics>
+
       <fogExp2 attach="fog" args={[0x6d527d, 0.28]} />
     </>
   );

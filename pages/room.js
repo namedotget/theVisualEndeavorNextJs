@@ -6,10 +6,13 @@ import { UI } from "../fiber/UI";
 import { Crosshair } from "../fiber/Crosshair";
 import { Scene } from "../fiber/Scene";
 import { useRouter } from "next/router";
+import { getAllArtistData } from "../DUMMY/dummy-backend";
 
 //Camera//
 
 function RoomPage() {
+  const allArtists = getAllArtistData();
+
   //Close all modals in Room on back button//
   const router = useRouter();
   useEffect(() => {
@@ -33,7 +36,7 @@ function RoomPage() {
           <Crosshair />
         </UI>
         <Canvas className={classes.canvas}>
-          <Scene />
+          <Scene artists={allArtists} />
         </Canvas>
       </>
     </div>

@@ -9,7 +9,7 @@ export const Model = (props) => {
   const { scene, nodes, materials } = useGLTF("../textures/scene.gltf");
   const [ref] = useBox(() => ({
     mass: 1,
-    args: [2, 3, 1],
+    args: [2, 2, 0.75],
     material: {
       friction: 1,
       restitution: 0,

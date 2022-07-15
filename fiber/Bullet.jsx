@@ -8,6 +8,7 @@ export const Bullet = (props) => {
     args: [0.05],
     ...props,
   }));
+
   return (
     <mesh ref={sphereRef} castShadow>
       <sphereBufferGeometry args={[0.05, 32, 32]} />

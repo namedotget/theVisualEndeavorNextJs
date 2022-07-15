@@ -31,9 +31,13 @@ export function StartModal() {
   des2.textContent = `< press 'e' to exit pop-up >`;
   const des3 = document.createElement("h3");
   des3.className = "roomStartDescription";
-  des3.textContent = `< click artwork to open pop-up >`;
+  des3.textContent = `< left click artwork to open pop-up >`;
+  const des4 = document.createElement("h3");
+  des3.className = "roomStartDescription";
+  des3.textContent = `< right click to pew-pew >`;
   modal.appendChild(title);
   modal.appendChild(des1);
   modal.appendChild(des2);
   modal.appendChild(des3);
+  modal.appendChild(des4);
 }
