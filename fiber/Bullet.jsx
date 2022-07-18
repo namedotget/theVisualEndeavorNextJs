@@ -5,13 +5,13 @@ export const Bullet = (props) => {
   /** Bullet collider */
   const [sphereRef] = useSphere(() => ({
     mass: 1,
-    args: [0.05],
+    args: [0.15],
     ...props,
   }));
 
   return (
     <mesh ref={sphereRef} castShadow>
-      <sphereBufferGeometry args={[0.05, 32, 32]} />
+      <sphereBufferGeometry args={[0.15, 32, 32]} />
       <meshLambertMaterial color="white" />
     </mesh>
   );

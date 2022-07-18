@@ -20,9 +20,9 @@ export function StartModal() {
   modal.className = "roomStartModal";
   document.body.appendChild(modal);
 
-  const title = document.createElement("h1");
+  const title = document.createElement("img");
   title.className = "roomStartTitle";
-  title.textContent = "Welcome to the Visual Endeavor !";
+  title.src = "../icons/tve-icon.jpg";
   const des1 = document.createElement("h3");
   des1.className = "roomStartDescription";
   des1.textContent = `< press 'q' to quit >`;
@@ -33,8 +33,8 @@ export function StartModal() {
   des3.className = "roomStartDescription";
   des3.textContent = `< left click artwork to open pop-up >`;
   const des4 = document.createElement("h3");
-  des3.className = "roomStartDescription";
-  des3.textContent = `< right click to pew-pew >`;
+  des4.className = "roomStartDescription";
+  des4.textContent = `< right click to pew-pew >`;
   modal.appendChild(title);
   modal.appendChild(des1);
   modal.appendChild(des2);

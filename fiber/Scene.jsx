@@ -7,7 +7,6 @@ import { Physics, Debug } from "@react-three/cannon";
 // Three
 import { extend, useThree } from "@react-three/fiber";
 import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";
-
 // Prefabs
 import { initFog } from "./scene-config";
 import { Plane } from "./Plane";
@@ -22,8 +21,11 @@ import { StartModal } from "./StartModal";
 //SHADERS///
 import fragment0 from "../public/files/shaders/a1-sha0-fragment.glsl";
 import vertex0 from "../public/files/shaders/a1-sha0-vertex.glsl";
+import floorvertex from "../public/files/shaders/floor-vertex.glsl";
+import floorfragment from "../public/files/shaders/floor-fragment.glsl";
 
 import { ArtVideo } from "./ArtVideo";
+import { Lamp } from "./Light";
 
 extend({ PointerLockControls });
 
@@ -31,7 +33,7 @@ export const Scene = (props) => {
   initFog();
   const { camera, gl } = useThree();
   const controls = useRef();
-
+  const lite = useRef();
   useEffect(() => {
     camera.layers.enable(0);
     camera.layers.enable(1);
@@ -55,6 +57,7 @@ export const Scene = (props) => {
     const handleFocus = () => {
       controls.current.lock();
     };
+
     document.addEventListener("click", handleFocus);
 
     document.addEventListener("keypress", keyQuit);
@@ -81,6 +84,7 @@ export const Scene = (props) => {
       <pointLight position={[0, 0, -3]} intensity={0.6} castShadow />
       <pointLight position={[0, 0, 4]} intensity={0.8} castShadow />
       {/** Physic objects */}
+
       <Physics
         gravity={[0, -9, 0]}
         tolerance={0}
@@ -89,7 +93,7 @@ export const Scene = (props) => {
       >
         {/* ///////////WORLD //////////////////*/}
         {/** Plane */}
-        <Plane />
+        <Plane vertex={floorvertex} fragment={floorfragment} />
         {/** Player */}
         <Player />
         {/** Cubes */}
@@ -156,9 +160,11 @@ export const Scene = (props) => {
           position={[15, 0.5, -12]}
           gravity={[]}
         />
+
+        <Lamp position={[15, 4, -12]} />
       </Physics>
 
-      <fogExp2 attach="fog" args={[0x6d527d, 0.28]} />
+      <fogExp2 attach="fog" args={[0x79518c, 0.28]} />
     </>
   );
 };

@@ -15,6 +15,8 @@ body {
   box-sizing: border-box;
   font-family: pixel;
   background-color: darkgray;
+  width: 100vw;
+  height: 100%;
 }
 
 .pgContain {
@@ -51,16 +53,19 @@ body {
 }
 
 .roomStartModal {
+  text-align: center;
   padding: 2.5rem;
   position: absolute;
-  top: 30%;
+  top: 10%;
   left: 8%;
   width: 75%;
-  height: 30%;
+  height: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   background: transparent;
+  gap: 5%;
   backdrop-filter: blur(45px);
   border-radius: 20px;
   animation-name: animate-fade-in;
@@ -68,12 +73,14 @@ body {
   animation-duration: 2s;
 }
 
-.roomStartText {
-  color: blue;
+.roomStartTitle {
+  border-radius: 100%;
+  width: 8rem;
+  height: 8rem;
 }
 
 .roomStartDescription {
-  color: red;
+  color: lightslategrey;
   width: 100%;
 }
 

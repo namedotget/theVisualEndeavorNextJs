@@ -1,13 +1,12 @@
 import classes from "../styles/room.module.css";
 
-import React, { Fragment, Suspense, useRef, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { UI } from "../fiber/UI";
 import { Crosshair } from "../fiber/Crosshair";
 import { Scene } from "../fiber/Scene";
 import { useRouter } from "next/router";
 import { getAllArtistData } from "../DUMMY/dummy-backend";
-
 //Camera//
 
 function RoomPage() {
