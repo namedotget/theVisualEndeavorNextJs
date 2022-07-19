@@ -25,7 +25,7 @@ export const ArtVideo = (props) => {
 
   const [cubeRef] = useBox(() => ({
     mass: 10,
-    args: [5.5, 3.5, 0.75],
+    args: [5.5, 3.5, 3.5],
     material: {
       friction: 1,
       restitution: 0,
@@ -42,9 +42,9 @@ export const ArtVideo = (props) => {
   //Load Images//
 
   return (
-    <Detailed ref={cubeRef} distances={[0, 15]} {...props}>
+    <Detailed ref={cubeRef} distances={[0, 18]} {...props}>
       <mesh castShadow={true} layers={props.layers} onClick={handleLeftClick}>
-        <boxBufferGeometry args={[5, 3, 0.5]} />
+        <boxBufferGeometry args={[5, 3, 3]} />
         <meshBasicMaterial toneMapped={false}>
           <videoTexture attach="map" args={[video]} encoding={sRGBEncoding} />
         </meshBasicMaterial>

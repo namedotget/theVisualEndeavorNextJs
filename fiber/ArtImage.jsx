@@ -36,7 +36,7 @@ export const ArtImage = (props) => {
   const map = useLoader(TextureLoader, artwork.src);
 
   return (
-    <Detailed ref={cubeRef} distances={[0, 12]} {...props}>
+    <Detailed ref={cubeRef} distances={[0, 18]} {...props}>
       <mesh castShadow={true} layers={props.layers} onClick={handleLeftClick}>
         <boxBufferGeometry args={[5, 3, 0.5]} />
         <meshStandardMaterial castShadow map={map} />

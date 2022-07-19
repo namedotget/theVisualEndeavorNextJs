@@ -3,12 +3,11 @@ import { usePlane } from "@react-three/cannon";
 
 import { useFrame } from "@react-three/fiber";
 import { UniformsUtils, UniformsLib } from "three";
-
+import { Ocean } from "./Water";
 export const Plane = (props) => {
   /** Plane collider */
   const { vertex } = props;
   const { fragment } = props;
-  const shader = useRef();
 
   const [floorRef] = usePlane(() => ({
     rotation: [-Math.PI / 2, 0, 0],
@@ -54,30 +53,11 @@ export const Plane = (props) => {
     },
   }));
 
-  useFrame(({ clock, mouse }) => {
-    shader.current.uniforms.u_time = {
-      value: clock.getElapsedTime(),
-    };
-  });
-
   return (
     <group>
+      <Ocean />
       <mesh ref={floorRef} receiveShadow={true} scale={[50, 50, 100]}>
         <planeBufferGeometry />
-        <shaderMaterial
-          ref={shader}
-          attach="material"
-          fog={true}
-          vertexShader={vertex}
-          fragmentShader={fragment}
-          uniforms={UniformsUtils.merge([
-            UniformsLib["fog"],
-
-            {
-              customUniform: { u_time: { value: 0.5 } },
-            },
-          ])}
-        />
       </mesh>
       <mesh
         ref={wallRef1}

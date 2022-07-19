@@ -17,7 +17,6 @@ import { ArtImage } from "./ArtImage";
 import { ArtShader } from "./ArtShader";
 import { Model } from "./Model";
 import { StartModal } from "./StartModal";
-
 //SHADERS///
 import fragment0 from "../public/files/shaders/a1-sha0-fragment.glsl";
 import vertex0 from "../public/files/shaders/a1-sha0-vertex.glsl";
@@ -26,6 +25,7 @@ import floorfragment from "../public/files/shaders/floor-fragment.glsl";
 
 import { ArtVideo } from "./ArtVideo";
 import { Lamp } from "./Light";
+import { Sound } from "./Sound";
 
 extend({ PointerLockControls });
 
@@ -113,12 +113,6 @@ export const Scene = (props) => {
         <Cube position={[0, 0.5, 5.5]} type={"Static"} />
 
         {/* ///////////CMF SCENE //////////////////*/}
-        <pointLight
-          position={[15, 8, -12]}
-          intensity={0.8}
-          castShadow
-          fog={false}
-        />
         <ArtImage
           position={[20, 1.5, -20]}
           rotation={[0, -Math.PI / 4, 0]}
@@ -155,16 +149,45 @@ export const Scene = (props) => {
           artwork={colinArt.videos[0]}
         />
 
-        <Model
-          gltf={"../textures/logo.gltf"}
-          position={[15, 0.5, -12]}
-          gravity={[]}
+        <Model gltf={"../textures/logo.gltf"} position={[15, 0.5, -12]} />
+
+        <Lamp
+          position={[15, 4, -12]}
+          fog={false}
+          mp3={"../files/mp3s/chillest_sample.mp3"}
         />
 
-        <Lamp position={[15, 4, -12]} />
+        {/* NEEKO SCENE */}
+        {/* 
+        <ArtVideo
+          position={[-15, 4, -12]}
+          rotation={[0, -Math.PI / 2, 0]}
+          type={"Static"}
+          artwork={neekoArt.videos[0]}
+        />
+        <Model gltf={"../textures/logo.gltf"} position={[-15, 0.5, -12]} />
+        <ArtImage
+          position={[-12, 1.5, -20]}
+          rotation={[0, -Math.PI / 4, 0]}
+          type={"Static"}
+          image={"../room-preview.jpg"}
+          artwork={neekoArt.images[0]}
+        />
+        <ArtImage
+          position={[-20, 1.5, -20]}
+          rotation={[0, -Math.PI / 4, 0]}
+          type={"Static"}
+          image={"../room-preview.jpg"}
+          artwork={neekoArt.images[1]}
+        />
+        <Lamp
+          position={[15, 4, -12]}
+          fog={false}
+          mp3={"../files/mp3s/chillest_sample.mp3"}
+        /> */}
       </Physics>
 
-      <fogExp2 attach="fog" args={[0x79518c, 0.28]} />
+      <fogExp2 attach="fog" args={[0x79518c, 0.2]} />
     </>
   );
 };

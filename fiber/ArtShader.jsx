@@ -34,7 +34,7 @@ export const ArtShader = (props) => {
     handleModalClick(e, artwork);
   }
   return (
-    <Detailed ref={cubeRef} distances={[0, 12]} {...props}>
+    <Detailed ref={cubeRef} distances={[0, 18]} {...props}>
       <mesh castShadow layers={props.layers} onClick={handleLeftClick}>
         <boxBufferGeometry args={[5, 4, 0.5]} />
         <shaderMaterial
