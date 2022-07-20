@@ -44,10 +44,9 @@ export const Scene = (props) => {
       //Remove all modals//
       document.querySelector(".roomModal")?.remove();
       document.querySelector(".roomStartModal")?.remove();
-
       //click logo//
       const logo = document.querySelector(".logo-canvas_canvas__3WjCv");
-      console.log(logo);
+
       logo.click();
       document.removeEventListener("keypress", keyQuit);
     }

@@ -1,28 +1,40 @@
-import { AudioListener, AudioLoader } from "three";
+import { AudioListener, AudioLoader, AudioAnalyser } from "three";
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { useEffect, useState, useRef, Suspense } from "react";
-import { Detailed } from "@react-three/drei";
 
 export function Sound(props) {
   const { mp3 } = props;
-  const sound = useRef();
-  const { camera } = useThree();
+  const music = useRef();
+  const { camera, gl, scene } = useThree();
   const [listener] = useState(() => new AudioListener());
   const buffer = useLoader(AudioLoader, mp3);
+
+  const pos = props.position;
+
   useEffect(() => {
-    console.log(camera.position);
-    sound.current.setBuffer(buffer);
-    sound.current.setRefDistance(0.1);
-    sound.current.setLoop(true);
-    sound.current.play();
+    if (music.current.isPlaying) music.current.stop();
+    music.current.autoPlay = false;
+    music.current.setBuffer(buffer);
+    music.current.setRefDistance(0.1);
+    music.current.setLoop(true);
     camera.add(listener);
-    if (!camera) sound.current.stop();
-    return () => camera.remove(listener);
+    return () => {
+      camera.remove(listener);
+    };
   }, []);
 
-  return (
-    <Suspense>
-      <positionalAudio ref={sound} args={[listener]} {...props} />
-    </Suspense>
-  );
+  useFrame(() => {
+    if (music.current) {
+      if (
+        Math.abs(camera.position.x - pos[0]) >= 12 ||
+        Math.abs(camera.position.z - pos[2]) >= 12
+      ) {
+        music.current.pause();
+      } else if (!music.current.isPlaying && scene) {
+        music.current.play();
+      }
+    }
+  });
+
+  return <positionalAudio ref={music} args={[listener]} {...props} />;
 }

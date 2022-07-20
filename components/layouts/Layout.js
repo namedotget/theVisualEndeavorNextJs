@@ -7,12 +7,11 @@ import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 function DisableRender() {
   useFrame(() => null, 500);
-  console.log("test");
 }
 
 function Layout(props) {
   const { ref, inView } = useInView();
-  console.log(props.children);
+
   return (
     <>
       <LogoCanvas />

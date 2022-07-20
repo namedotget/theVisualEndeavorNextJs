@@ -1,9 +1,10 @@
 import { useSphere } from "@react-three/cannon";
 import { Detailed } from "@react-three/drei";
+import { Suspense } from "react";
 import { Sound } from "./Sound";
 export function Lamp(props) {
   const pos = props.position;
-  const {mp3} = props;
+  const { mp3 } = props;
   const [lampRef] = useSphere(() => ({
     mass: 1,
     args: [1],
