@@ -24,6 +24,7 @@ export function Lamp(props) {
         lookAt={pos}
       />
       <Sound mp3={mp3} position={pos} />
+
       <mesh ref={lampRef}>
         <sphereBufferGeometry args={[1]} />
         <meshBasicMaterial {...props} color={"lightgreen"} />
