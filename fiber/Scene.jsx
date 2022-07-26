@@ -1,8 +1,8 @@
 // REACT
-import React, { Suspense, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 // Physics
-import { Physics, Debug } from "@react-three/cannon";
+import { Physics } from "@react-three/cannon";
 
 // Three
 import { extend, useThree } from "@react-three/fiber";
@@ -11,22 +11,25 @@ import { PointerLockControls } from "three/examples/jsm/controls/PointerLockCont
 import { initFog } from "./scene-config";
 import { Plane } from "./Plane";
 import { Player } from "./Player";
-import { Skybox } from "./Skybox";
 import { Cube } from "./Cube";
 import { ArtImage } from "./ArtImage";
 import { ArtShader } from "./ArtShader";
 import { Model } from "./Model";
 import { StartModal } from "./StartModal";
-import TouchControls from "../hooks/controller/TouchControls";
+
 //SHADERS///
 import fragment0 from "../public/files/shaders/a1-sha0-fragment.glsl";
 import vertex0 from "../public/files/shaders/a1-sha0-vertex.glsl";
-import floorvertex from "../public/files/shaders/floor-vertex.glsl";
-import floorfragment from "../public/files/shaders/floor-fragment.glsl";
+import fragment1 from "../public/files/shaders/a1-sha1-fragment.glsl";
+import vertex1 from "../public/files/shaders/a1-sha1-vertex.glsl";
+import fragment2 from "../public/files/shaders/a1-sha2-fragment.glsl";
+import vertex2 from "../public/files/shaders/a1-sha2-vertex.glsl";
+import fragment3 from "../public/files/shaders/a1-sha3-fragment.glsl";
+import vertex3 from "../public/files/shaders/a1-sha3-vertex.glsl";
+/////////////
 
 import { ArtVideo } from "./ArtVideo";
 import { Lamp } from "./Light";
-import { Sound } from "./Sound";
 
 extend({ PointerLockControls });
 
@@ -72,7 +75,6 @@ export const Scene = (props) => {
   const { artists } = props;
   const colinArt = artists[0].artwork;
   const neekoArt = artists[1].artwork;
-  
 
   return (
     <>
@@ -119,26 +121,15 @@ export const Scene = (props) => {
         <Cube position={[0, 0.5, 5.5]} type={"Static"} />
 
         {/* ///////////CMF SCENE //////////////////*/}
-        <ArtImage
-          position={[20, 1.5, -20]}
-          rotation={[0, -Math.PI / 4, 0]}
-          type={"Static"}
-          image={"../room-preview.jpg"}
-          pid={"p1"}
-          artwork={colinArt.images[0]}
-          artist="Colin"
-        />
 
-        <ArtImage
+        <ArtShader
           position={[12, 1.5, -20]}
           rotation={[0, Math.PI / 4, 0]}
           type={"Static"}
-          image={"../instagram-icon.png"}
-          pid={"p2"}
-          artwork={colinArt.images[1]}
-          artist="Colin"
+          artwork={colinArt.shaders[1]}
+          fragment={fragment1}
+          vertex={vertex1}
         />
-
         <ArtShader
           position={[22, 1.5, -14]}
           rotation={[0, -Math.PI / 2, 0]}
@@ -148,12 +139,12 @@ export const Scene = (props) => {
           vertex={vertex0}
         />
 
-        <ArtVideo
-          position={[10, 1.5, -14]}
+        {/* <ArtVideo
+          position={[10, 1.5, -10]}
           rotation={[0, Math.PI / 2, 0]}
           type={"Static"}
           artwork={colinArt.videos[0]}
-        />
+        /> */}
 
         <pointLight
           position={[15, 4, -14]}
@@ -203,7 +194,7 @@ export const Scene = (props) => {
         />
       </Physics>
 
-      <fogExp2 attach="fog" args={[0x79518c, 0.15]} />
+      <fogExp2 attach="fog" args={[0x79518c, 0.2]} />
     </>
   );
 };

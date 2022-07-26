@@ -120,6 +120,11 @@ const DUMMY_DATA = {
             fragment: "../files/images/a1-sha0-fragment.glsl.js",
             vertex: "../files/images/a1-sha0-vertex.glsl.js",
           },
+          {
+            aid: "a1-sha1",
+            fragment: "../files/images/a1-sha1-fragment.glsl.js",
+            vertex: "../files/images/a1-sha1-vertex.glsl.js",
+          },
         ],
         models: [],
         videos: [

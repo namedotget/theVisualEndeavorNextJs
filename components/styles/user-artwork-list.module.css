@@ -2,3 +2,10 @@
   display: flex;
   gap: 2rem;
 }
+
+.paginationBar {
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  background: blue;
+}

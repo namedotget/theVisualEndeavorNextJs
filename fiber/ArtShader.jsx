@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useBox } from "@react-three/cannon";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { UniformsUtils, UniformsLib, Vector3 } from "three";
 import { Detailed } from "@react-three/drei";
 import { handleModalClick } from "./Modal";
@@ -11,11 +11,13 @@ export const ArtShader = (props) => {
   const { artwork } = props;
   const { fragment } = props;
   const { vertex } = props;
+
+  const { camera } = useThree();
   //Physics//
 
   const [cubeRef] = useBox(() => ({
     mass: 1,
-    args: [5.5, 4.5, 1],
+    args: [7.5, 6.5, 1],
     material: {
       friction: 1,
       restitution: 0,
@@ -36,7 +38,7 @@ export const ArtShader = (props) => {
   return (
     <Detailed ref={cubeRef} distances={[0, 18]} {...props}>
       <mesh castShadow layers={props.layers} onClick={handleLeftClick}>
-        <boxBufferGeometry args={[5, 4, 0.5]} />
+        <boxBufferGeometry args={[7, 6, 0.5]} />
         <shaderMaterial
           ref={shader}
           attach="material"

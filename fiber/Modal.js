@@ -67,7 +67,7 @@ export function handleModalClick(e, artwork) {
       //Remove modal, reset crosshair after fadeOut, remove fadeOut
       setTimeout(() => {
         modal?.remove();
-        document.querySelector(".crosshair").style.opacity = 1;
+        document.querySelector(".crosshair").style.opacity = 0.5;
         document.removeEventListener("keypress", handleModalKeys);
         modal.classList.toggle("fadeOut");
       }, 500);

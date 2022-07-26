@@ -10,7 +10,7 @@ import { Bullet } from "./Bullet";
 import { Raycaster } from "three";
 
 /** Player movement constants */
-const speed = 300;
+const speed = 150;
 const bulletSpeed = 30;
 const bulletCoolDown = 300;
 const jumpSpeed = 5;
@@ -78,16 +78,16 @@ export const Player = () => {
     let [horizontal, vertical] = [0, 0];
 
     if (w) {
-      vertical += 0.5;
+      vertical += 1;
     }
     if (s) {
-      vertical -= 0.5;
+      vertical -= 1;
     }
     if (d) {
-      horizontal += 0.5;
+      horizontal += 1;
     }
     if (a) {
-      horizontal -= 0.5;
+      horizontal -= 1;
     }
 
     if (horizontal !== 0 && vertical !== 0) {
