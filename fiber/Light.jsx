@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { Sound } from "./Sound";
 export function Lamp(props) {
   const pos = props.position;
+  const { color } = props;
   const { mp3 } = props;
   const [lampRef] = useSphere(() => ({
     mass: 1,
@@ -18,7 +19,7 @@ export function Lamp(props) {
   return (
     <group>
       <spotLight
-        color={"green"}
+        color={color}
         position={[pos[0], pos[1] + 2, pos[2]]}
         intensity={0.8}
         lookAt={pos}
@@ -27,7 +28,7 @@ export function Lamp(props) {
 
       <mesh ref={lampRef}>
         <sphereBufferGeometry args={[1]} />
-        <meshBasicMaterial {...props} color={"lightgreen"} />
+        <meshBasicMaterial {...props} color={color} />
       </mesh>
     </group>
   );

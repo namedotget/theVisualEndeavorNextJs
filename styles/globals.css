@@ -65,7 +65,7 @@ body {
   align-items: center;
   flex-direction: column;
   background: transparent;
-  gap: 5%;
+  gap: 8%;
   backdrop-filter: blur(45px);
   border-radius: 20px;
   animation-name: animate-fade-in;
@@ -168,4 +168,3 @@ body {
     opacity: 0;
   }
 }
-

@@ -17,6 +17,7 @@ import { ArtImage } from "./ArtImage";
 import { ArtShader } from "./ArtShader";
 import { Model } from "./Model";
 import { StartModal } from "./StartModal";
+import TouchControls from "../hooks/controller/TouchControls";
 //SHADERS///
 import fragment0 from "../public/files/shaders/a1-sha0-fragment.glsl";
 import vertex0 from "../public/files/shaders/a1-sha0-vertex.glsl";
@@ -71,6 +72,7 @@ export const Scene = (props) => {
   const { artists } = props;
   const colinArt = artists[0].artwork;
   const neekoArt = artists[1].artwork;
+  
 
   return (
     <>
@@ -92,7 +94,7 @@ export const Scene = (props) => {
       >
         {/* ///////////WORLD //////////////////*/}
         {/** Plane */}
-        <Plane vertex={floorvertex} fragment={floorfragment} />
+        <Plane color={"black"} />
         {/** Player */}
         <Player />
         {/** Cubes */}
@@ -105,7 +107,12 @@ export const Scene = (props) => {
         <Cube position={[-5, 0, -5]} />
         <Cube position={[-5, 0.5, -5]} />
         <Cube position={[-5, 1, -5]} />
-        <Cube position={[-5, 1.5, -5]} />
+        <Cube position={[5, 0, -5]} />
+        <Cube position={[5, 0.5, -5]} />
+        <Cube position={[5, 1, -5]} />
+        <Cube position={[5, 1.5, -5]} />
+        <Cube position={[5, 2, -5]} />
+        <Cube position={[5, 2.5, -5]} />
         {/** Static cubes */}
         <Cube position={[0, 0, 5]} type={"Static"} />
         <Cube position={[0, 0, 5.5]} type={"Static"} />
@@ -148,45 +155,55 @@ export const Scene = (props) => {
           artwork={colinArt.videos[0]}
         />
 
+        <pointLight
+          position={[15, 4, -14]}
+          intensity={1.0}
+          color={"yellow"}
+          castShadow
+        />
+
         <Model gltf={"../textures/logo.gltf"} position={[15, 0.5, -12]} />
 
         <Lamp
-          position={[15, 4, -12]}
+          position={[15, 5, -12]}
           fog={false}
           mp3={"../files/mp3s/chillest_sample.mp3"}
+          color={"lightgreen"}
         />
 
         {/* NEEKO SCENE */}
-        {/* 
+
         <ArtVideo
-          position={[-15, 4, -12]}
+          position={[-15, 1.5, -12]}
           rotation={[0, -Math.PI / 2, 0]}
           type={"Static"}
           artwork={neekoArt.videos[0]}
         />
-        <Model gltf={"../textures/logo.gltf"} position={[-15, 0.5, -12]} />
-        <ArtImage
-          position={[-12, 1.5, -20]}
-          rotation={[0, -Math.PI / 4, 0]}
-          type={"Static"}
-          image={"../room-preview.jpg"}
-          artwork={neekoArt.images[0]}
-        />
-        <ArtImage
-          position={[-20, 1.5, -20]}
-          rotation={[0, -Math.PI / 4, 0]}
-          type={"Static"}
-          image={"../room-preview.jpg"}
-          artwork={neekoArt.images[1]}
-        />
         <Lamp
-          position={[15, 4, -12]}
+          position={[-15, 5, -12]}
           fog={false}
           mp3={"../files/mp3s/chillest_sample.mp3"}
-        /> */}
+          color={"skyblue"}
+        />
+
+        {/* SCENE 3 */}
+        <Lamp
+          position={[-15, 5, 12]}
+          fog={false}
+          mp3={"../files/mp3s/chillest_sample.mp3"}
+          color={"pink"}
+        />
+
+        {/* SCENE 4 */}
+        <Lamp
+          position={[15, 5, 12]}
+          fog={false}
+          mp3={"../files/mp3s/chillest_sample.mp3"}
+          color={"yellow"}
+        />
       </Physics>
 
-      <fogExp2 attach="fog" args={[0x79518c, 0.2]} />
+      <fogExp2 attach="fog" args={[0x79518c, 0.15]} />
     </>
   );
 };

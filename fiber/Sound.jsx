@@ -11,7 +11,6 @@ export function Sound(props) {
   const pos = props.position;
 
   useEffect(() => {
-    console.log(music);
     music.current.autoPlay = false;
     music.current.setBuffer(buffer);
     music.current.setRefDistance(1);
@@ -27,7 +26,6 @@ export function Sound(props) {
   }, []);
 
   useFrame(() => {
-    console.log("test");
     if (
       Math.abs(camera.position.x - pos[0]) >= 12 ||
       Math.abs(camera.position.z - pos[2]) >= 12

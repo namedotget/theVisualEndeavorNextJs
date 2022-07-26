@@ -6,9 +6,11 @@ function PaginatedUserArt(props) {
 
   return (
     <div className={classes.list}>
+      <button>PREV</button>
       {images.map((img) => (
         <UserArtwork key={img.aid} img={img} />
       ))}
+      <button></button>
     </div>
   );
 }

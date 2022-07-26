@@ -4,10 +4,11 @@ import { usePlane } from "@react-three/cannon";
 import { useFrame } from "@react-three/fiber";
 import { UniformsUtils, UniformsLib } from "three";
 import { Ocean } from "./Water";
+import { ColorUniform } from "three-stdlib";
 export const Plane = (props) => {
   /** Plane collider */
-  const { vertex } = props;
-  const { fragment } = props;
+
+  const { color } = props;
 
   const [floorRef] = usePlane(() => ({
     rotation: [-Math.PI / 2, 0, 0],
@@ -66,7 +67,7 @@ export const Plane = (props) => {
         scale={[50, 30, 100]}
       >
         <planeBufferGeometry />
-        <meshPhongMaterial color={"black"} receiveShadow />
+        <meshPhongMaterial color={color} receiveShadow />
       </mesh>
       <mesh
         ref={wallRef2}
@@ -75,7 +76,7 @@ export const Plane = (props) => {
         scale={[50, 30, 100]}
       >
         <planeBufferGeometry />
-        <meshPhongMaterial color={"skyblue"} receiveShadow />
+        <meshPhongMaterial color={color} receiveShadow />
       </mesh>
       <mesh
         ref={wallRef3}
@@ -84,7 +85,7 @@ export const Plane = (props) => {
         scale={[50, 30, 100]}
       >
         <planeBufferGeometry />
-        <meshPhongMaterial color={"skyblue"} receiveShadow />
+        <meshPhongMaterial color={color} receiveShadow />
       </mesh>
       <mesh
         ref={wallRef4}
@@ -93,7 +94,7 @@ export const Plane = (props) => {
         scale={[50, 30, 100]}
       >
         <planeBufferGeometry />
-        <meshPhongMaterial color={"skyblue"} receiveShadow />
+        <meshPhongMaterial color={color} receiveShadow />
       </mesh>
       <mesh
         ref={ceilRef}
@@ -102,7 +103,7 @@ export const Plane = (props) => {
         scale={[50, 50, 100]}
       >
         <planeBufferGeometry />
-        <meshPhongMaterial color={"skyblue"} receiveShadow />
+        <meshPhongMaterial color={color} receiveShadow />
       </mesh>
     </group>
   );

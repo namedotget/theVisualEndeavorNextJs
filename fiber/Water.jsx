@@ -22,7 +22,7 @@ export function Ocean() {
       sunColor: 0xffffff,
       waterColor: 0x001e0f,
       distortionScale: 3.7,
-      fog: false,
+      fog: true,
       format: gl.encoding,
     }),
     [waterNormals]

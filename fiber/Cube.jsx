@@ -20,7 +20,7 @@ export const Cube = (props) => {
   const color = useMemo(
     () =>
       niceColors[paletteIndex][
-        Math.floor(Math.random() * niceColors[paletteIndex].length)
+        Math.floor(Math.random() * niceColors[paletteIndex].length * 2)
       ],
     []
   );

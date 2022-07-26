@@ -22,7 +22,7 @@ export const Player = () => {
     mass: 100,
     fixedRotation: true,
     position: [0, 1, 0],
-    args: [0.2],
+    args: [0.5],
     material: {
       friction: 0,
     },

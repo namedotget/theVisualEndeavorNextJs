@@ -122,7 +122,15 @@ const DUMMY_DATA = {
           },
         ],
         models: [],
-        videos: [],
+        videos: [
+          {
+            aid: "a2-vid0",
+            name: "Spase",
+            src: "../files/video.mp4",
+            artist: "Neeko-Art",
+            link: "",
+          },
+        ],
       },
     },
   },
