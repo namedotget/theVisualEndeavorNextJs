@@ -24,6 +24,7 @@ function PaginatedUserArt(props) {
         ))}
       </div>
       <Pagination
+        key={"p1"}
         className={classes.paginationBar}
         currentPage={currentPage}
         totalCount={images.length}

@@ -35,6 +35,7 @@ const Pagination = (props) => {
   let lastPage = paginationRange.length[0] - 1;
   return (
     <ul
+      key={"p1"}
       className={classnames(classes.paginationContain, {
         [className]: className,
       })}
@@ -57,6 +58,7 @@ const Pagination = (props) => {
         // Render our Page Pills
         return (
           <li
+            key={"p1"}
             className={classnames(classes.paginationItem, {
               selected: pageNumber === currentPage,
             })}
