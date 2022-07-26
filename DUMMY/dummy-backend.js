@@ -54,6 +54,13 @@ const DUMMY_DATA = {
             vertex: "../files/shaders/a1-sha0-vertex.glsl.js",
             artist: "Colin",
           },
+          {
+            aid: "a1-sha1",
+            name: "Space on a Plane",
+            fragment: "../files/shaders/a1-sha1-fragment.glsl.js",
+            vertex: "../files/shaders/a1-sha1-vertex.glsl.js",
+            artist: "Colin",
+          },
         ],
         models: [],
         videos: [
@@ -114,18 +121,7 @@ const DUMMY_DATA = {
             name: "name-of-img",
           },
         ],
-        shaders: [
-          {
-            aid: "a1-sha0",
-            fragment: "../files/images/a1-sha0-fragment.glsl.js",
-            vertex: "../files/images/a1-sha0-vertex.glsl.js",
-          },
-          {
-            aid: "a1-sha1",
-            fragment: "../files/images/a1-sha1-fragment.glsl.js",
-            vertex: "../files/images/a1-sha1-vertex.glsl.js",
-          },
-        ],
+        shaders: [],
         models: [],
         videos: [
           {
