@@ -1,4 +1,4 @@
-import classes from "../../styles/artist-detail.module.css";
+import classes from "../../styles/artist-detail.module.scss";
 import Link from "next/link";
 import { getAllArtistData, getArtistById } from "../../DUMMY/dummy-backend";
 

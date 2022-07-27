@@ -1,72 +1,38 @@
 .paginationContain {
   position: relative;
+  padding: 2.5rem;
+  list-style: none;
   display: flex;
-  list-style-type: none;
-  height: 100%;
-  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  background-color: transparent;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
 
-  .paginationItem {
-    padding: 0 12px;
-    height: 32px;
-    text-align: center;
-    margin: auto 4px;
-    color: rgba(0, 0, 0, 0.87);
-    display: flex;
-    box-sizing: border-box;
-    align-items: center;
-    letter-spacing: 0.01071em;
-    border-radius: 16px;
-    line-height: 1.43;
-    font-size: 13px;
-    min-width: 32px;
+.artworkContain {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+}
+.btn {
+  background: pink;
+}
+.el {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  background: white;
+  animation-name: animate-fade-in;
+  animation-timing-function: ease;
+  animation-duration: 0.5s;
+  border-radius: 100%;
+}
 
-    &.dots:hover {
-      background-color: transparent;
-      cursor: default;
-    }
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.04);
-      cursor: pointer;
-    }
-
-    &.selected {
-      background-color: rgba(0, 0, 0, 0.08);
-    }
-
-    .arrow {
-      &::before {
-        position: relative;
-        /* top: 3pt; Uncomment this to lower the icons as requested in comments*/
-        content: "";
-        /* By using an em scale, the arrows will size with the font */
-        display: inline-block;
-        width: 0.4em;
-        height: 0.4em;
-        border-right: 0.12em solid rgba(0, 0, 0, 0.87);
-        border-top: 0.12em solid rgba(0, 0, 0, 0.87);
-      }
-
-      &.left {
-        transform: rotate(-135deg) translate(-50%);
-      }
-
-      &.right {
-        transform: rotate(45deg);
-      }
-    }
-
-    &.disabled {
-      pointer-events: none;
-
-      .arrow::before {
-        border-right: 0.12em solid rgba(0, 0, 0, 0.43);
-        border-top: 0.12em solid rgba(0, 0, 0, 0.43);
-      }
-
-      &:hover {
-        background-color: transparent;
-        cursor: default;
-      }
-    }
-  }
+.disabled {
+  opacity: 0.5;
 }

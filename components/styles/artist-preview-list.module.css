@@ -6,3 +6,19 @@
   gap: 1rem;
   width: 80%;
 }
+
+.hide {
+  animation-name: animate-fade-out;
+  animation-timing-function: ease;
+  animation-duration: 0.5s;
+}
+
+@keyframes animate-fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}

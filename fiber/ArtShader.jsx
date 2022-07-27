@@ -8,6 +8,7 @@ import { handleModalClick } from "./Modal";
 // Constants
 
 export const ArtShader = (props) => {
+  const pos = props.position;
   const { artwork } = props;
   const { fragment } = props;
   const { vertex } = props;
@@ -36,7 +37,7 @@ export const ArtShader = (props) => {
     handleModalClick(e, artwork);
   }
   return (
-    <Detailed ref={cubeRef} distances={[0, 18]} {...props}>
+    <Detailed ref={cubeRef} distances={[0, 12]} {...props}>
       <mesh castShadow layers={props.layers} onClick={handleLeftClick}>
         <boxBufferGeometry args={[7, 6, 0.5]} />
         <shaderMaterial

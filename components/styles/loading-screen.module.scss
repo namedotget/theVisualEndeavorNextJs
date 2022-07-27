@@ -1,0 +1,26 @@
+.body_loading {
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  width: 80%;
+  height: 100%;
+}
+.none {
+  display: none;
+}
+
+.title {
+  position: absolute;
+  z-index: 100;
+  color: white;
+}
+.canvas canvas {
+  width: 80vw;
+  height: 40vh;
+}
+.canvas canvas {
+  border-radius: 50px;
+}

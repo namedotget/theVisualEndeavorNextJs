@@ -1,4 +1,3 @@
-import BackgroundCanvas from "../components/layouts/BackgroundCanvas";
 import Layout from "../components/layouts/Layout";
 import "../styles/globals.css";
 import { useRouter } from "next/router";
@@ -24,7 +23,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Layout>
       <LoadingScreen loading={loading} />
-      <Component {...pageProps} />
+      {!loading ? <Component {...pageProps} /> : <div></div>}
     </Layout>
   );
 }

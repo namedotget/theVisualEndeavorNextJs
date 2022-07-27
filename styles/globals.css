@@ -15,7 +15,7 @@ body {
   box-sizing: border-box;
   font-family: pixel;
   background-color: darkgray;
-  width: 100vw;
+  width: 100%;
   height: 100%;
 }
 
@@ -30,6 +30,7 @@ body {
   gap: 5rem;
 
   height: 100%;
+  animation: animate-fade-in 0.75s;
 }
 
 .contentContain {
@@ -168,4 +169,8 @@ body {
   100% {
     opacity: 0;
   }
+}
+
+.hide {
+  display: none;
 }

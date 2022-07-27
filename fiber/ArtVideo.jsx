@@ -49,6 +49,7 @@ export const ArtVideo = (props) => {
           <videoTexture attach="map" args={[video]} encoding={sRGBEncoding} />
         </meshBasicMaterial>
       </mesh>
+
       <mesh></mesh>
     </Detailed>
   );

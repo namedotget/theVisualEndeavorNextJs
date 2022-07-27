@@ -1,4 +1,4 @@
-import classes from "./styles/artwork-preview.module.css";
+import classes from "./styles/artwork-preview.module.scss";
 import Link from "next/link";
 
 function ArtworkPreview(props) {

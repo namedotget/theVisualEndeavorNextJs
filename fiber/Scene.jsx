@@ -30,6 +30,7 @@ import vertex3 from "../public/files/shaders/a1-sha3-vertex.glsl";
 
 import { ArtVideo } from "./ArtVideo";
 import { Lamp } from "./Light";
+import { ArtistCenterPiece } from "./ArtistCenterPiece";
 
 extend({ PointerLockControls });
 
@@ -121,6 +122,12 @@ export const Scene = (props) => {
         <Cube position={[0, 0.5, 5.5]} type={"Static"} />
 
         {/* ///////////CMF SCENE //////////////////*/}
+
+        <ArtistCenterPiece
+          position={[15, 0.5, -14]}
+          type={"Static"}
+          artist={artists[0]}
+        />
 
         <ArtShader
           position={[12, 1.5, -20]}

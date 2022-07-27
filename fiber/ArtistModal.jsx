@@ -1,7 +1,8 @@
-export function handleModalClick(e, artwork) {
+import ArtistsPage from "../pages/artists";
+
+export function handleArtistModalClick(e, artist) {
   if (e.button === 2) return;
   if (
-    document.querySelector(".artistModal") ||
     document.querySelector(".roomModal") ||
     document.querySelector(".roomStartModal")
   )
@@ -15,10 +16,7 @@ export function handleModalClick(e, artwork) {
 
   const title = document.createElement("h1");
   title.className = "roomModalTitle";
-  title.textContent = artwork.name;
-  const artist = document.createElement("h2");
-  artist.className = "roomModalArtist";
-  artist.textContent = artwork.artist;
+  title.textContent = artist.name;
   const des1 = document.createElement("p");
   des1.className = "roomModalDescription";
   des1.textContent = `< press 'E' to exit >`;
@@ -41,24 +39,23 @@ export function handleModalClick(e, artwork) {
   imgContain.appendChild(twitter);
 
   modal.appendChild(title);
-  modal.appendChild(artist);
   modal.appendChild(des1);
   modal.appendChild(des2);
   modal.appendChild(des3);
-  if (artwork.link) {
+  if (artist.links.website) {
     const des4 = document.createElement("p");
     des4.className = "roomModalDescription";
     des4.textContent = " < 'L' for custom link >";
     const linkImg = document.createElement("img");
     linkImg.className = "roomModalImg";
-    linkImg.src = `../icons/${artwork.artist}-icon.png`;
+    linkImg.src = `../icons/${artist.name}-icon.png`;
 
     imgContain.appendChild(linkImg);
     modal.appendChild(des4);
   }
   modal.appendChild(imgContain);
 
-  function handleModalKeys(e) {
+  function handleArtistModalKeys(e) {
     const modal = document.querySelector(".roomModal");
     //Exit//
     if (e.key === "e") {
@@ -69,7 +66,7 @@ export function handleModalClick(e, artwork) {
       setTimeout(() => {
         modal?.remove();
         document.querySelector(".crosshair").style.opacity = 0.5;
-        document.removeEventListener("keypress", handleModalKeys);
+        document.removeEventListener("keypress", handleArtistModalKeys);
         modal.classList.toggle("fadeOut");
       }, 500);
     }
@@ -87,5 +84,5 @@ export function handleModalClick(e, artwork) {
     }
   }
   //
-  document.addEventListener("keypress", handleModalKeys);
+  document.addEventListener("keypress", handleArtistModalKeys);
 }

@@ -8,6 +8,7 @@ const DUMMY_DATA = {
       name: "Colin",
       bio: "I like to make shaders with GLSL ! ",
       profileImage: "/room-preview.jpg",
+      centerPiece: "../files/models/nsx/scene.gltf",
       links: {
         twitter: "https://twitter.com/namedotget",
         instagram: "https://www.instagram.com/ccolinfosterr/",

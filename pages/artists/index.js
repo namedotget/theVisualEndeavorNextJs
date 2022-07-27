@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 function ArtistsPage() {
   const router = useRouter();
+
   return (
     <>
       <div className="pgContain">
