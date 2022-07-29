@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "got": ">=11.8.5",
     "@react-three/cannon": "^6.3.0",
     "@react-three/drei": "^9.17.0",
     "@react-three/fiber": "^8.0.27",

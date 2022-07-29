@@ -1,7 +1,4 @@
-import classes from "../styles/editor.module.scss";
-import Select from "react-select";
-import { useRef, useEffect, useState } from "react";
-import firebase from "../firebase/clientApp";
+import { useEffect, useState } from "react";
 import { auth } from "../firebase/clientApp";
 import Login from "../components/login";
 import EditorModule from "../components/EditorModule";
@@ -26,8 +23,11 @@ function Editor() {
     return unsub;
   }, []);
 
-
-  return <div className="pgContain">{user ? <EditorModule userId={user.uid}/> : <Login />}</div>;
+  return (
+    <div className="pgContain">
+      {user ? <EditorModule userId={user.uid} /> : <Login />}
+    </div>
+  );
 }
 
 export default Editor;
