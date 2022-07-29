@@ -124,7 +124,7 @@ export const Scene = (props) => {
         {/* ///////////CMF SCENE //////////////////*/}
 
         <ArtistCenterPiece
-          position={[15, 0.5, -14]}
+          position={[15, 2, -14]}
           type={"Static"}
           artist={artists[0]}
         />

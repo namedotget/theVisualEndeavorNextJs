@@ -25,6 +25,7 @@ export const ArtShader = (props) => {
     },
     ...props,
   }));
+
   //animation loop
   const shader = useRef();
   useFrame(({ clock, mouse }) => {
@@ -37,7 +38,7 @@ export const ArtShader = (props) => {
     handleModalClick(e, artwork);
   }
   return (
-    <Detailed ref={cubeRef} distances={[0, 12]} {...props}>
+    <Detailed ref={cubeRef} distances={[0, 14]} {...props}>
       <mesh castShadow layers={props.layers} onClick={handleLeftClick}>
         <boxBufferGeometry args={[7, 6, 0.5]} />
         <shaderMaterial

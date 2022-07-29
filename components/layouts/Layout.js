@@ -3,19 +3,12 @@ import BackgroundCanvas from "./BackgroundCanvas";
 import LogoCanvas from "./LogoCanvas";
 import MainFooter from "./MainFooter";
 import MainHeader from "./MainHeader";
-import { useInView } from "react-intersection-observer";
-import { motion } from "framer-motion";
-function DisableRender() {
-  useFrame(() => null, 500);
-}
 
 function Layout(props) {
-  const { ref, inView } = useInView();
-
   return (
     <>
       <LogoCanvas />
-      <BackgroundCanvas>{!inView && <DisableRender />}</BackgroundCanvas>
+      <BackgroundCanvas />
       <MainHeader />
       <main>{props.children}</main>
       <MainFooter />

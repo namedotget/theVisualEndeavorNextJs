@@ -1,0 +1,27 @@
+
+
+
+TO-DO : 
+
+        - Decide what to do with loading-screen , when website is build loading screen is barley used / creates choppiness 
+
+
+        - Add <Detailed> to Models 
+
+        - Create Backend using Firebase/AWS
+            - store files in storage
+            - store database info
+
+        - Create editing module w/ authentication by password
+                ~~ 3 total passwords for extra 3 scenes ~~~ 
+            - allows artist access to scene
+                -upload/replace/delete 4 pieces of artwork
+                    -size (small, medium, large)
+                    -small objects have optional physics
+                -upload/replace/delete 1 song
+                -edit info
+                    -name , bio, links, profileImg
+
+        6) Handle errors in Editor (dont let any bad files/unsupported content get through)
+
+        7) Final css/scss adjustments

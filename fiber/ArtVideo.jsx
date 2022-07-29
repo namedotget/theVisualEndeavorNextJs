@@ -42,7 +42,7 @@ export const ArtVideo = (props) => {
   //Load Images//
 
   return (
-    <Detailed ref={cubeRef} distances={[0, 18]} {...props}>
+    <Detailed ref={cubeRef} distances={[0, 14]} {...props}>
       <mesh castShadow={true} layers={props.layers} onClick={handleLeftClick}>
         <boxBufferGeometry args={[5, 3, 3]} />
         <meshBasicMaterial toneMapped={false}>
