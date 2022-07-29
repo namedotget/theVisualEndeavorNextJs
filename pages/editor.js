@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { auth } from "../firebase/clientApp";
-import Login from "../components/login";
+import Login from "../components/Login";
 import EditorModule from "../components/EditorModule";
 function Editor() {
   const [user, setUser] = useState(null);
