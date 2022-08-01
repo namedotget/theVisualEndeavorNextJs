@@ -11,7 +11,7 @@ const DUMMY_DATA = {
       centerPiece: "../files/models/nsx/scene.gltf",
       links: {
         twitter: "https://twitter.com/namedotget",
-        instagram: "https://www.instagram.com/ccolinfosterr/",
+        instagram: "https://www.instagram.com/thevisualendeavor/",
         website: "https://www.neekoart.netlify.app",
       },
       artwork: {

@@ -27,7 +27,7 @@ export const ArtistCenterPiece = (props) => {
 
   useFrame(({ clock }) => {
     if (centerPiece.current) {
-      centerPiece.current.rotation.y += clock.getElapsedTime() * 0.00001;
+      centerPiece.current.rotation.y += clock.getElapsedTime() * 0.0001;
     }
   });
 
