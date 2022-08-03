@@ -1,13 +1,36 @@
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { useState, useEffect, useRef } from "react";
-import { auth, db } from "../firebase/clientApp";
+import { auth, db, storage } from "../firebase/clientApp";
 import FileSelection from "./FileSelection";
+import MusicSelection from "./MusicSelection";
 import classes from "./styles/editor-module.module.scss";
 function EditorModule(props) {
   const { userId } = props;
 
+  const name = useRef();
+  const twitter = useRef();
+  const insta = useRef();
+  const website = useRef();
+  const bio = useRef();
+  const profileImg = useRef();
+
   const [user, setUser] = useState();
   const usersCollectionRef = collection(db, "artists");
+
+  function submitInfo() {
+    const dbRef = doc(db, `artists/${user.id}`);
+    setDoc(
+      dbRef,
+      {
+        name: name.current.value,
+        twitter: twitter.current.value,
+        instagram: insta.current.value,
+        website: website.current.value,
+        bio: bio.current.value,
+      },
+      { merge: true }
+    );
+  }
 
   useEffect(() => {
     const getArtists = async () => {
@@ -26,27 +49,39 @@ function EditorModule(props) {
   return (
     <div>
       <div className={classes.info}>
-        <input placeholder="name" defaultValue={user?.name} />
-        <input placeholder="twitter-link" defaultValue={user?.twitter} />
-        <input placeholder="instagram-link" defaultValue={user?.instagram} />
-        <input placeholder="website-link" defaultValue={user?.website} />
-        <textarea defaultValue={"bio"} value={user?.bio} />
-        <h2>Choose a Profile Image</h2>
-        <input type="file" accept=".png,.jpg,.jpeg" />
+        <input placeholder="name" defaultValue={user?.name} ref={name} />
+        <input
+          placeholder="twitter-link"
+          defaultValue={user?.twitter}
+          ref={twitter}
+        />
+        <input
+          placeholder="instagram-link"
+          defaultValue={user?.instagram}
+          ref={insta}
+        />
+        <input
+          placeholder="website-link"
+          defaultValue={user?.website}
+          ref={website}
+        />
+        <textarea defaultValue={"bio"} value={user?.bio} ref={bio} />
+        <button className={classes.submitInfoBtn} onClick={submitInfo}>
+          Submit Info
+        </button>
       </div>
       <div className={classes.files}>
-        <h2>Artwork File #1</h2>
-        <FileSelection user={user} fileNum={"1"} />
-        <h2>Artwork File #2</h2>
-        <FileSelection user={user} fileNum={"2"} />
-        <h2>Artwork File #3</h2>
-        <FileSelection user={user} fileNum={"3"} />
-        <h2>Artwork File #4</h2>
-        <FileSelection user={user} fileNum={"4"} />
-        <h2>Music File </h2>
-        <input type="file" accept=".mp3" />
+        <div></div>
+        <p>(*files auto submit after selecting a file*)</p>
+        <FileSelection user={user} fileNum={"1"} key="file1" />
+
+        <FileSelection user={user} fileNum={"2"} key="file2" />
+
+        <FileSelection user={user} fileNum={"3"} key="file3" />
+
+        <FileSelection user={user} fileNum={"4"} key="file4" />
+        <MusicSelection user={user} key="fileMusic" />
       </div>
-      <button>SUBMIT</button>
       <div></div>
       <button onClick={() => auth.signOut()}>SIGN-OUT</button>
     </div>

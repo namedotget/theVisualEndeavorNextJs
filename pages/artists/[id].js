@@ -1,12 +1,33 @@
 import classes from "../../styles/artist-detail.module.scss";
 import Link from "next/link";
-import { getAllArtistData, getArtistById } from "../../DUMMY/dummy-backend";
-
+import {
+  getAllArtistData,
+  getArtistById,
+  getUserInfo,
+} from "../../DUMMY/dummy-backend";
 import PaginatedUserArt from "../../components/UserArtworkList";
+import { doc, collection, getDoc, getDocs } from "firebase/firestore";
+import { db, storage } from "../../firebase/clientApp";
+import { ref, getDownloadURL, listAll } from "firebase/storage";
+import { useEffect, useState } from "react";
 
 function ArtistDetailPage(props) {
   const artist = props.selectedArtist;
-  console.log(artist);
+
+  const [userData, setUserData] = useState(null);
+  const [userFiles, setUserFiles] = useState([]);
+
+  async function getArtistData() {
+    const dbRef = doc(db, `artists/${artist.id}`);
+    const data = await getDoc(dbRef);
+    setUserData(data.data());
+
+    const dbRef2 = collection(db, `artists/${artist.id}/files`);
+    const files = await getDocs(dbRef2);
+    files.docs.forEach((doc) => {
+      setUserFiles((prev) => [...prev, doc.data()]);
+    });
+  }
 
   if (!artist) {
     return (
@@ -15,27 +36,32 @@ function ArtistDetailPage(props) {
       </div>
     );
   }
+
+  useEffect(() => {
+    getArtistData();
+  }, []);
   return (
     <div className="pgContain">
+      {console.log(userFiles)}
       <div className={classes.artistDetailContain}>
         <div className={classes.profile}>
           <img className={classes.img} src={artist.profileImage} />
 
           <div className={classes.info}>
-            <p className={classes.name}>{artist.name}</p>
-            <p className={classes.bio}>{artist.bio}</p>
+            <p className={classes.name}>{userData?.name}</p>
+            <p className={classes.bio}>{userData?.bio}</p>
             <div className={classes.socialLinks}>
-              <Link href={artist.links.twitter}>
+              <Link href={userData?.twitter || "www.twitter.com"}>
                 <img className={classes.socialIcon} src="/twitter-icon.png" />
               </Link>
-              <Link href={artist.links.instagram}>
+              <Link href={userData?.instagram || "www.instagram.com"}>
                 <img className={classes.socialIcon} src="/instagram-icon.png" />
               </Link>
             </div>
           </div>
         </div>
         <div className={classes.userArtwork}>
-          <PaginatedUserArt images={artist.artwork.images} />
+          <PaginatedUserArt user={userData} />
         </div>
       </div>
     </div>

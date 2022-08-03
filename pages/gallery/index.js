@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import GalleryPreviewList from "../../components/GalleryPreviewList";
-import { getAllImages } from "../../DUMMY/dummy-backend";
+import { getAllData, getAllImages } from "../../DUMMY/dummy-backend";
 
 function GalleryPage() {
   const allImages = getAllImages();

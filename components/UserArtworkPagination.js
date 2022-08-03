@@ -3,8 +3,12 @@ import ReactDOM from "react-dom";
 import ReactPaginate from "react-paginate";
 import classes from "./styles/pagination.module.scss";
 import UserArtwork from "./UserArtwork";
+import { storage, db } from "../firebase/clientApp";
+import { ref, getDownloadURL, listAll } from "firebase/storage";
+import { collection, getDocs } from "firebase/firestore";
 // Example items, to simulate fetching from another resources.
 function UserArtworkPagination(props) {
+  const { user } = props;
   const { images } = props;
 
   function Items({ currentItems }) {
@@ -13,8 +17,8 @@ function UserArtworkPagination(props) {
         <div className={classes.artworkContain}>
           {currentItems &&
             currentItems.map((img) => (
-              <div key={img.aid + "div"}>
-                <UserArtwork img={img} key={img.aid} />
+              <div key={img + "Contain"}>
+                <UserArtwork img={img} key={img + "UserArtwork"} />
               </div>
             ))}
         </div>
@@ -34,13 +38,13 @@ function UserArtworkPagination(props) {
       // Fetch items from another resources.
       const endOffset = itemOffset + itemsPerPage;
       console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-      setCurrentItems(images.slice(itemOffset, endOffset));
-      setPageCount(Math.ceil(images.length / itemsPerPage));
+      setCurrentItems(images?.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(images?.length / itemsPerPage));
     }, [itemOffset, itemsPerPage]);
 
     // Invoke when user click to request another page.
     const handlePageClick = (event) => {
-      const newOffset = (event.selected * itemsPerPage) % images.length;
+      const newOffset = (event.selected * itemsPerPage) % images?.length;
       console.log(
         `User requested page number ${event.selected}, which is offset ${newOffset}`
       );

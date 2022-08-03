@@ -1,6 +1,30 @@
-.info {
+.files {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 2.5rem;
+}
+.info {
+  padding: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  background: lightgray;
+}
+
+.submitInfoBtn {
+  background: lightblue;
+  opacity: 0.7;
+  transition: 1s;
+  &:hover {
+    opacity: 1;
+    transition: 1s;
+  }
+  &:active {
+    background: cyan;
+    transition: 0.25s;
+  }
 }

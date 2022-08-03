@@ -2,6 +2,9 @@
 // DATA WILL BE STORED ON FIREBASE DATABASE //
 // FUNCTIONS WILL BE ADJUSTED AND MOVED TO ./helpers/api-utils.js
 
+import { collection, doc, getDocs, getDoc } from "firebase/firestore";
+import { db, storage } from "../firebase/clientApp";
+
 const DUMMY_DATA = {
   artists: {
     a1: {
