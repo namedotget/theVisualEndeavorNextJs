@@ -31,7 +31,11 @@ function MusicSelection(props) {
 
   function updateDB() {
     const dbRef = doc(db, `artists/${user.id}/files/music`);
-    setDoc(dbRef, { url: list, type: "music" }, { merge: true });
+    setDoc(
+      dbRef,
+      { url: list, type: "music", id: `${user.id}-music` },
+      { merge: true }
+    );
   }
 
   function updateURLS() {

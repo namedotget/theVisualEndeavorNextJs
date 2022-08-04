@@ -4,8 +4,12 @@ function UserArtwork(props) {
   const { img } = props;
   return (
     <div className={classes.animatedContain}>
-      <Link href={`/gallery/${img.aid}`}>
-        <img className={classes.artwork} src={img} />
+      <Link href={`/gallery/${img.id}`}>
+        {img.type === "video" ? (
+          <video className={classes.artwork} src={img.url} />
+        ) : (
+          <img className={classes.artwork} src={img.url} />
+        )}
       </Link>
     </div>
   );

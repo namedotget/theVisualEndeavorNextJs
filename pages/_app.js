@@ -4,7 +4,9 @@ import { useRouter } from "next/router";
 import LoadingScreen from "../components/LoadingScreen";
 import { useState, useEffect } from "react";
 
+
 function MyApp({ Component, pageProps }) {
+
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);

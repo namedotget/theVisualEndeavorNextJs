@@ -8,8 +8,11 @@ import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { collection, getDocs } from "firebase/firestore";
 // Example items, to simulate fetching from another resources.
 function UserArtworkPagination(props) {
-  const { user } = props;
-  const { images } = props;
+  let { images } = props;
+
+  if (!images) return <div>...loading files...</div>;
+
+  images = images.filter((img) => img.type === "video" || img.type === "image");
 
   function Items({ currentItems }) {
     return (
@@ -17,8 +20,8 @@ function UserArtworkPagination(props) {
         <div className={classes.artworkContain}>
           {currentItems &&
             currentItems.map((img) => (
-              <div key={img + "Contain"}>
-                <UserArtwork img={img} key={img + "UserArtwork"} />
+              <div key={img.name + "Contain"}>
+                <UserArtwork img={img} key={img.name + "UserArtwork"} />
               </div>
             ))}
         </div>
@@ -53,21 +56,24 @@ function UserArtworkPagination(props) {
 
     return (
       <>
-        <Items currentItems={currentItems} />
-        <ReactPaginate
-          className={classes.paginationContain}
-          pageLinkClassName={classes.el}
-          nextLinkClassName={classes.btn}
-          previousLinkClassName={classes.btn}
-          disabledClassName={classes.disabled}
-          breakLabel="~~~"
-          nextLabel=">>>"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={3}
-          pageCount={pageCount}
-          previousLabel="<<<"
-          renderOnZeroPageCount={null}
-        />
+        <div>
+          {console.log(images)}
+          <Items currentItems={currentItems} />
+          <ReactPaginate
+            className={classes.paginationContain}
+            pageLinkClassName={classes.el}
+            nextLinkClassName={classes.btn}
+            previousLinkClassName={classes.btn}
+            disabledClassName={classes.disabled}
+            breakLabel="~~~"
+            nextLabel=">>>"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={3}
+            pageCount={pageCount}
+            previousLabel="<<<"
+            renderOnZeroPageCount={null}
+          />
+        </div>
       </>
     );
   }

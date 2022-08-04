@@ -60,7 +60,12 @@ function FileSelection(props) {
     const dbRef = doc(db, `artists/${user.id}/files/${props.fileNum}`);
     setDoc(
       dbRef,
-      { url: list, name: fileName.current.value, type: fileType },
+      {
+        url: list,
+        name: fileName.current.value,
+        type: fileType,
+        id: `${user.id}-${props.fileNum}`,
+      },
       { merge: true }
     );
   }
@@ -84,9 +89,11 @@ function FileSelection(props) {
   }
 
   useEffect(() => {
-    if (user && !fileType) getFileTypeFromDB();
+    if (user) getFileTypeFromDB();
     updateURLS();
-  });
+  }, [user]);
+
+  //Styling for react-select
 
   return (
     <div className={classes.fileSelectionContain}>

@@ -6,10 +6,18 @@ import {
   getArtworkById,
 } from "../../DUMMY/dummy-backend";
 import UserArtworkList from "../../components/UserArtworkList";
+import { getAllFileIDs, getFileById } from "../../firebase/helpers";
+import { useEffect, useState } from "react";
 
 function ArtworkDetailPage(props) {
-  const artwork = props.selectedArtwork;
-  const artist = props.selectedArtist;
+  const id = props.artworkId;
+  const [artwork, setArtwork] = useState(null);
+  useEffect(() => {
+    if (id) getFileById(id).then((res) => setArtwork(res));
+  });
+
+  if (!artwork) return <div></div>;
+
   return (
     <div className="pgContain">
       <div className={classes.artDetailContain}>
@@ -23,8 +31,6 @@ function ArtworkDetailPage(props) {
 
 export async function getStaticProps(context) {
   const artworkId = context.params.aid;
-  const artwork = getArtworkById(artworkId);
-  const [artist] = getArtistById(artworkId.slice(0, 2));
 
   //add this condition to avoid request getting kicked to [..slug]
   //   if (!artist) {
@@ -34,8 +40,7 @@ export async function getStaticProps(context) {
   //   }
   return {
     props: {
-      selectedArtwork: artwork,
-      selectedArtist: artist,
+      artworkId: artworkId,
     },
     revalidate: 60,
   };
@@ -44,7 +49,17 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   const allImages = getAllImages();
 
-  const paths = allImages.map((img) => ({
+  const allImageAIDs = [
+    { aid: "a1-1" },
+    { aid: "a1-2" },
+    { aid: "a1-3" },
+    { aid: "a1-4" },
+    { aid: "a2-1" },
+    { aid: "a2-2" },
+    { aid: "a2-3" },
+    { aid: "a2-4" },
+  ];
+  const paths = allImageAIDs.map((img) => ({
     params: { aid: img.aid },
   }));
   return {

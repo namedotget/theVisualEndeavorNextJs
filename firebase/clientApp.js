@@ -23,5 +23,6 @@ export const auth = getAuth();
 export const db = getFirestore(app);
 export const storage = getStorage(app);
 
+//FETCHING///
 
 export default app;

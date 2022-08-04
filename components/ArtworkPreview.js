@@ -5,13 +5,16 @@ function ArtworkPreview(props) {
   const image = props.image;
   const artist = props.artist;
 
+  if (!image) return <div>...loading image...</div>;
+
   return (
     <div className={classes.artPreviewContain}>
-      <Link className={classes.profile} href={`/artists/${artist.id}`}>
-        <img src={artist.profileImage} />
-      </Link>
-      <Link href={`/gallery/${image.aid}`}>
-        <img className={classes.artwork} src={image.src} />
+      <Link href={`/gallery/${image.id}`}>
+        {image.type === "video" ? (
+          <video className={classes.artwork} src={image.url} />
+        ) : (
+          <img className={classes.artwork} src={image.url} />
+        )}
       </Link>
     </div>
   );

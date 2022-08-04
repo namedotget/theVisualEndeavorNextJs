@@ -10,26 +10,26 @@ import { doc, collection, getDoc, getDocs } from "firebase/firestore";
 import { db, storage } from "../../firebase/clientApp";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { useEffect, useState } from "react";
+import { getArtistData, getArtistFiles } from "../../firebase/helpers";
 
 function ArtistDetailPage(props) {
   const artist = props.selectedArtist;
 
   const [userData, setUserData] = useState(null);
   const [userFiles, setUserFiles] = useState([]);
+  const [loading, setLoading] = useState(null);
 
-  async function getArtistData() {
-    const dbRef = doc(db, `artists/${artist.id}`);
-    const data = await getDoc(dbRef);
-    setUserData(data.data());
+  useEffect(() => {
+    if (artist) getArtistData(artist.id).then((res) => setUserData(res));
+  }, []);
 
-    const dbRef2 = collection(db, `artists/${artist.id}/files`);
-    const files = await getDocs(dbRef2);
-    files.docs.forEach((doc) => {
-      setUserFiles((prev) => [...prev, doc.data()]);
-    });
-  }
+  useEffect(() => {
+    if (userData?.id) {
+      getArtistFiles(userData.id).then((res) => setUserFiles(res));
+    }
+  }, [userData]);
 
-  if (!artist) {
+  if (!userData?.uid || !userFiles[1]) {
     return (
       <div className="pgContain">
         <h1> Loading...</h1>
@@ -37,12 +37,9 @@ function ArtistDetailPage(props) {
     );
   }
 
-  useEffect(() => {
-    getArtistData();
-  }, []);
   return (
     <div className="pgContain">
-      {console.log(userFiles)}
+      {console.log(userData, userFiles)}
       <div className={classes.artistDetailContain}>
         <div className={classes.profile}>
           <img className={classes.img} src={artist.profileImage} />
@@ -61,7 +58,7 @@ function ArtistDetailPage(props) {
           </div>
         </div>
         <div className={classes.userArtwork}>
-          <PaginatedUserArt user={userData} />
+          <PaginatedUserArt images={userFiles} />
         </div>
       </div>
     </div>
