@@ -1,4 +1,4 @@
-export function handleModalClick(e, artwork) {
+export function handleModalClick(e, artwork, artistData) {
   if (e.button === 2) return;
   if (
     document.querySelector(".artistModal") ||
@@ -45,13 +45,13 @@ export function handleModalClick(e, artwork) {
   modal.appendChild(des1);
   modal.appendChild(des2);
   modal.appendChild(des3);
-  if (artwork.link) {
+  if (artwork.website) {
     const des4 = document.createElement("p");
     des4.className = "roomModalDescription";
     des4.textContent = " < 'L' for custom link >";
     const linkImg = document.createElement("img");
     linkImg.className = "roomModalImg";
-    linkImg.src = `../icons/${artwork.artist}-icon.png`;
+    // linkImg.src = `../icons/${artwork.artist}-icon.png`;
 
     imgContain.appendChild(linkImg);
     modal.appendChild(des4);
@@ -75,15 +75,15 @@ export function handleModalClick(e, artwork) {
     }
 
     if (e.key === "i") {
-      window.open(artist.links.instagram);
+      window.open(artistData.instagram);
     }
 
     if (e.key === "t") {
-      window.open(artist.links.twitter);
+      window.open(artistData.twitter);
     }
 
     if (e.key === "l") {
-      window.open(artwork.link);
+      if (artwork.website) window.open(artwork.website);
     }
   }
   //

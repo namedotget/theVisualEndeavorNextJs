@@ -5,6 +5,7 @@ import { useEffect, useState, useRef, Suspense } from "react";
 export function Sound(props) {
   const mp3 = useRef();
   const music = useRef();
+  if (!mp3) return;
   const [listener, setListener] = useState(() => new AudioListener());
   const { camera, gl, scene } = useThree();
   // const [listener, setListener] = useState(() => new AudioListener());

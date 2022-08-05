@@ -8,11 +8,11 @@ import { sRGBEncoding, Texture, LinearFilter, VideoTexture } from "three";
 
 // Constants
 export const ArtVideo = (props) => {
-  const { artwork } = props;
-
+  const { artwork, artist } = props;
+  const url = artwork.url;
   const [video] = useState(() =>
     Object.assign(document.createElement("video"), {
-      src: artwork.src,
+      src: url,
       crossOrigin: "Anonymous",
       loop: true,
       muted: true,
@@ -35,7 +35,7 @@ export const ArtVideo = (props) => {
 
   function handleLeftClick(e) {
     //open modal//
-    handleModalClick(e, artwork);
+    handleModalClick(e, artwork, artist);
   }
 
   // const picture = require("../public/room-preview.jpg");

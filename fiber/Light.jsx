@@ -6,6 +6,7 @@ export function Lamp(props) {
   const pos = props.position;
   const { color } = props;
   const { mp3 } = props;
+  console.log(mp3);
   const [lampRef] = useSphere(() => ({
     mass: 1,
     args: [1],
@@ -24,7 +25,7 @@ export function Lamp(props) {
         intensity={0.8}
         lookAt={pos}
       />
-      <Sound mp3={mp3} position={pos} />
+      {mp3 === "none" ? <mesh /> : <Sound mp3={mp3} position={pos} />}
 
       <mesh ref={lampRef}>
         <sphereBufferGeometry args={[1]} />

@@ -9,7 +9,7 @@ function ArtistPreview(props) {
   return (
     <Link href={path}>
       <div className={classes.artistContain}>
-        <img className={classes.img} src={artist.profileImage} />
+        <img className={classes.img} src={`./icons/${artist.id}-icon.png`} />
 
         <div className={classes.name}>{artist.name}</div>
       </div>

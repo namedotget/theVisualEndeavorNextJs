@@ -48,7 +48,8 @@ export function handleArtistModalClick(e, artist) {
     des4.textContent = " < 'L' for custom link >";
     const linkImg = document.createElement("img");
     linkImg.className = "roomModalImg";
-    linkImg.src = `../icons/${artist.name}-icon.png`;
+    // need to add icon to editor/storage
+    // linkImg.src = `../icons/${artist.name}-icon.png`;
 
     imgContain.appendChild(linkImg);
     modal.appendChild(des4);
@@ -72,15 +73,15 @@ export function handleArtistModalClick(e, artist) {
     }
 
     if (e.key === "i") {
-      window.open(artist.links.instagram);
+      window.open(artist.instagram);
     }
 
     if (e.key === "t") {
-      window.open(artist.links.twitter);
+      window.open(artist.twitter);
     }
 
     if (e.key === "l") {
-      window.open(artwork.link);
+      window.open(artwork.website);
     }
   }
   //

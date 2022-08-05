@@ -1,6 +1,7 @@
 .contain {
   position: relative;
-  left: 10%;
+  left: 5%;
+  top: 50%;
   z-index: 0;
   width: 30%;
   height: 100%;

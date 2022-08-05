@@ -4,8 +4,8 @@
 }
 .contain {
   position: absolute;
-  top: 2%;
-  left: 38%;
+  top: 10%;
+  left: 40%;
 }
 .header {
   display: flex;
@@ -19,8 +19,12 @@
 }
 
 .navigation {
+  position: absolute;
+  left: 55%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
   gap: 10%;
 }
 

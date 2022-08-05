@@ -8,7 +8,6 @@ function Layout(props) {
   return (
     <>
       <LogoCanvas />
-      <BackgroundCanvas />
       <MainHeader />
       <main>{props.children}</main>
       <MainFooter />

@@ -24,6 +24,8 @@
 }
 
 .img {
+  position: relative;
+  right: 10%;
   width: 10rem;
   height: 10rem;
   border-radius: 100%;
@@ -36,7 +38,7 @@
 }
 
 .name {
-  font-size: 3rem;
+  font-size: 4vw;
   width: 35%;
   height: 100%;
   display: flex;

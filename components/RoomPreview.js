@@ -1,12 +1,16 @@
-import classes from "./styles/room-preview.module.css";
+import classes from "./styles/room-preview.module.scss";
 
 function RoomPreview(props) {
   return (
     <div className={classes.container}>
-      <button className={classes.btn} onClick={props.onClick}>
-        {/* <img className={classes.icon} src="./room-preview-icon.png" /> */}
+      <button
+        className={classes.btn}
+        onClick={props.onClick}
+        style={{ fontFamily: "pixel" }}
+      >
+        ENTER ROOM
       </button>
-      <img className={classes.img} src="./room-preview.jpg" />
+      <img className={classes.img} src="./purplefog.png" />
     </div>
   );
 }

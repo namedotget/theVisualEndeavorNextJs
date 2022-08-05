@@ -9,11 +9,11 @@ import { Camera, FrontSide, LOD, Mesh, Vector3 } from "three";
 
 // Constants
 export const ArtImage = (props) => {
-  const { artwork } = props;
+  const { artwork, artist } = props;
   //Physics//
 
   const [cubeRef] = useBox(() => ({
-    mass: 10,
+    mass: 1,
     args: [5.5, 3.5, 0.75],
     material: {
       friction: 1,
@@ -22,25 +22,26 @@ export const ArtImage = (props) => {
     ...props,
   }));
 
+  const geo = useRef();
+
   ///LOD////
 
   function handleLeftClick(e) {
     //open modal//
-    handleModalClick(e, artwork);
+    handleModalClick(e, artwork, artist);
   }
 
   // const picture = require("../public/room-preview.jpg");
   //Load Images//
   // const img = useLoader(TextureLoader, picture);
-
-  const map = useLoader(TextureLoader, artwork.src);
+  const url = artwork.url;
+  const map = useLoader(TextureLoader, url);
 
   return (
     <Detailed ref={cubeRef} distances={[0, 14]} {...props}>
-      <mesh castShadow={true} layers={props.layers} onClick={handleLeftClick}>
+      <mesh castShadow={true} onClick={handleLeftClick}>
         <boxBufferGeometry args={[5, 3, 0.5]} />
         <meshStandardMaterial castShadow map={map} />
-
         {/* <meshBasicMaterial color="black" /> */}
       </mesh>
       <mesh></mesh>

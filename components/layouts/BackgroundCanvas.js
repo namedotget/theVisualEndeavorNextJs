@@ -28,7 +28,7 @@ function Background(...props) {
         vertexShader={vertex}
         fragmentShader={fragment}
         uniforms={{
-          u_time: { value: 280.0 },
+          u_time: { value: 1000480.0 },
         }}
       />
     </mesh>

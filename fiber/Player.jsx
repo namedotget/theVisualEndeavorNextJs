@@ -14,7 +14,7 @@ const speed = 150;
 const bulletSpeed = 30;
 const bulletCoolDown = 300;
 const jumpSpeed = 5;
-const jumpCoolDown = 400;
+const jumpCoolDown = 4;
 
 export const Player = () => {
   /** Player collider */

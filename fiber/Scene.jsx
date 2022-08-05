@@ -73,9 +73,38 @@ export const Scene = (props) => {
   }, [gl]);
 
   ///ARTIST DATA////
-  const { artists } = props;
-  const colinArt = artists[0].artwork;
-  const neekoArt = artists[1].artwork;
+  const { allData, allFiles } = props;
+  const artists = [{}, {}, {}, {}];
+  for (let i = 0; i < 4; i++) {
+    artists[i] = {
+      data: allData[i],
+      files: allFiles.filter((file) => file?.id.slice(0, 2) === `a${i + 1}`),
+    };
+  }
+
+  if ((!allData[1], !allFiles[1])) return;
+
+  function assignPreFab(file, artist, pos, rot) {
+    return file.type === "video" ? (
+      <ArtVideo
+        position={pos}
+        rotation={rot}
+        artwork={file}
+        artist={artist}
+        type={"Static"}
+        scale={1}
+      />
+    ) : (
+      <ArtImage
+        position={pos}
+        rotation={rot}
+        artwork={file}
+        artist={artist}
+        type={"Static"}
+        scale={1}
+      />
+    );
+  }
 
   return (
     <>
@@ -123,35 +152,30 @@ export const Scene = (props) => {
 
         {/* ///////////CMF SCENE //////////////////*/}
 
-        <ArtistCenterPiece
-          position={[15, 2, -14]}
-          type={"Static"}
-          artist={artists[0]}
-        />
-
-        <ArtShader
-          position={[12, 1.5, -20]}
-          rotation={[0, Math.PI / 4, 0]}
-          type={"Static"}
-          artwork={colinArt.shaders[1]}
-          fragment={fragment1}
-          vertex={vertex1}
-        />
-        <ArtShader
-          position={[22, 1.5, -14]}
-          rotation={[0, -Math.PI / 2, 0]}
-          type={"Static"}
-          artwork={colinArt.shaders[0]}
-          fragment={fragment0}
-          vertex={vertex0}
-        />
-
-        {/* <ArtVideo
-          position={[10, 1.5, -10]}
-          rotation={[0, Math.PI / 2, 0]}
-          type={"Static"}
-          artwork={colinArt.videos[0]}
-        /> */}
+        {assignPreFab(
+          artists[0].files[0],
+          artists[0].data,
+          [10, 1.5, -10],
+          [0, Math.PI / 2, 0]
+        )}
+        {assignPreFab(
+          artists[0].files[1],
+          artists[0].data,
+          [12, 1.5, -20],
+          [0, Math.PI / 4, 0]
+        )}
+        {assignPreFab(
+          artists[0].files[2],
+          artists[0].data,
+          [22, 1.5, -14],
+          [0, -Math.PI / 2, 0]
+        )}
+        {assignPreFab(
+          artists[0].files[3],
+          artists[0].data,
+          [18, 1.5, -20],
+          [0, -Math.PI / 4, 0]
+        )}
 
         <pointLight
           position={[15, 4, -14]}
@@ -165,40 +189,66 @@ export const Scene = (props) => {
         <Lamp
           position={[15, 5, -12]}
           fog={false}
-          mp3={"../files/mp3s/chillest_sample.mp3"}
+          mp3={artists[0].files[4].url}
           color={"lightgreen"}
         />
 
         {/* NEEKO SCENE */}
 
-        <ArtVideo
-          position={[-15, 1.5, -12]}
+        {assignPreFab(
+          artists[1].files[0],
+          artists[1].data,
+          [-10, 1.5, -10],
+          [0, Math.PI / 2, 0]
+        )}
+        {assignPreFab(
+          artists[1].files[2],
+          artists[1].data,
+          [-22, 1.5, -14],
+          [0, -Math.PI / 2, 0]
+        )}
+        {assignPreFab(
+          artists[1].files[1],
+          artists[1].data,
+          [-12, 1.5, -18],
+          [0, -Math.PI / 4, 0]
+        )}
+        {assignPreFab(
+          artists[1].files[3],
+          artists[1].data,
+          [-18, 1.5, -20],
+          [0, 0, 0]
+        )}
+
+        {/* <ArtVideo
+          position={[-10, 1.5, -18]}
           rotation={[0, -Math.PI / 2, 0]}
           type={"Static"}
           artwork={neekoArt.videos[0]}
-        />
+        /> */}
+
         <Lamp
           position={[-15, 5, -12]}
           fog={false}
-          mp3={"../files/mp3s/chillest_sample.mp3"}
+          mp3={artists[1].files[4].url}
           color={"skyblue"}
         />
 
         {/* SCENE 3 */}
-        <Lamp
+        {/* <Lamp
           position={[-15, 5, 12]}
           fog={false}
           mp3={"../files/mp3s/chillest_sample.mp3"}
           color={"pink"}
-        />
+        /> */}
 
         {/* SCENE 4 */}
-        <Lamp
+        {/* <Lamp
           position={[15, 5, 12]}
           fog={false}
           mp3={"../files/mp3s/chillest_sample.mp3"}
           color={"yellow"}
-        />
+        /> */}
       </Physics>
 
       <fogExp2 attach="fog" args={[0x79518c, 0.2]} />

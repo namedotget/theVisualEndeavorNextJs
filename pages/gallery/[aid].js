@@ -14,6 +14,7 @@ function ArtworkDetailPage(props) {
   const [artwork, setArtwork] = useState(null);
   useEffect(() => {
     if (id) getFileById(id).then((res) => setArtwork(res));
+    console.log(artwork);
   });
 
   if (!artwork) return <div></div>;
@@ -22,8 +23,14 @@ function ArtworkDetailPage(props) {
     <div className="pgContain">
       <div className={classes.artDetailContain}>
         <h1 className={classes.artName}>{artwork.name}</h1>
-        <h2 className={classes.artistName}>Created By: {artist.name}</h2>
-        <img className={classes.artwork} src={artwork.src} />
+        <h2 className={classes.artistName}>Created By: {id}</h2>
+        {artwork?.type === "video" ? (
+          <video className={classes.artwork} controls autoPlay>
+            <source src={artwork.url} />
+          </video>
+        ) : (
+          <img className={classes.artwork} src={artwork.url} />
+        )}
       </div>
     </div>
   );

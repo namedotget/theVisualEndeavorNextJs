@@ -65,6 +65,7 @@ function FileSelection(props) {
         name: fileName.current.value,
         type: fileType,
         id: `${user.id}-${props.fileNum}`,
+        artist: user.name,
       },
       { merge: true }
     );
