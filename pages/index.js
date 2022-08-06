@@ -13,8 +13,12 @@ export default function HomePage() {
   return (
     <div className="pgContain">
       <Head>
-        <title>the Visual Endeavor</title>
-        <meta name="description" content="test" />
+        <title>the visual endeavor</title>
+        <meta
+          name="description"
+          content="~~~ a three-dimensional art gallery ~~~"
+        />
+        <meta name="image" content="./icons/tve-icon.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <RoomPreview onClick={handleRoomPreviewBtn} />

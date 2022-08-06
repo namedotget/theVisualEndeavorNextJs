@@ -60,3 +60,20 @@ export async function getFileById(id) {
   const data = await getDoc(dbRef);
   return data.data();
 }
+
+export const DATA = {
+  artists: {
+    info: {
+      name: "",
+      bio: "",
+      id: "",
+      instagram: "",
+      twitter: "",
+      uid: "",
+      website: "",
+    },
+    files: {},
+  },
+};
+
+function initDATA() {}
