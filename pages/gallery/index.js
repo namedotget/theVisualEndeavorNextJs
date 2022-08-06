@@ -7,23 +7,21 @@ function GalleryPage(props) {
   const [allFiles, setAllFiles] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    return () => {
-      if (!allFiles[1] && loading)
-        getAllFiles().then((res) => {
-          res.forEach((user) => {
-            user.then((data) => {
-              setAllFiles((prev) => [
-                ...prev,
-                ...data.filter((data) => data?.url && data?.type !== "music"),
-              ]);
-            });
+    if (allFiles[1]) setLoading(false);
+    if (!allFiles[1] && loading)
+      getAllFiles().then((res) => {
+        res.forEach((user) => {
+          user.then((data) => {
+            setAllFiles((prev) => [
+              ...prev,
+              ...data.filter((data) => data?.url && data?.type !== "music"),
+            ]);
           });
-          setLoading(false);
         });
-    };
+      });
   }, []);
 
-  if (!allFiles[1]) return <div>...loading allFiles...</div>;
+  if (!allFiles[1]) return <div>...loading files...</div>;
 
   return (
     <>
