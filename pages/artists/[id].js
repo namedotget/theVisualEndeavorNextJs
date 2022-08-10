@@ -1,35 +1,27 @@
 import classes from "../../styles/artist-detail.module.scss";
 import Link from "next/link";
-import {
-  getAllArtistData,
-  getArtistById,
-  getUserInfo,
-} from "../../DUMMY/dummy-backend";
 import PaginatedUserArt from "../../components/UserArtworkList";
-import { doc, collection, getDoc, getDocs } from "firebase/firestore";
-import { db, storage } from "../../firebase/clientApp";
-import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { useEffect, useState } from "react";
-import { getArtistData, getArtistFiles } from "../../firebase/helpers";
 
 function ArtistDetailPage(props) {
-  const artist = props.selectedArtist;
-
-  const [userData, setUserData] = useState(null);
+  const { artistID } = props;
+  const { allFiles, allData } = props;
   const [userFiles, setUserFiles] = useState([]);
-  const [loading, setLoading] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    if (artist) getArtistData(artist.id).then((res) => setUserData(res));
-  }, []);
-
-  useEffect(() => {
-    if (userData?.id) {
-      getArtistFiles(userData.id).then((res) => setUserFiles(res));
+    if (allData && artistID && !userData) {
+      setUserData(...allData.filter((user) => user.id === artistID));
     }
-  }, [userData]);
+    if (userData && allFiles[1] && !userFiles[1]) {
+      setUserFiles(
+        allFiles.filter((file) => file.id.slice(0, 2) === userData?.id)
+      );
+      console.log(userFiles);
+    }
+  }, [artistID, allFiles, allData, userData]);
 
-  if (!userData?.uid || !userFiles[1]) {
+  if (!userData || !userFiles) {
     return (
       <div className="pgContain">
         <h1> Loading...</h1>
@@ -39,10 +31,12 @@ function ArtistDetailPage(props) {
 
   return (
     <div className="pgContain">
-      {console.log(userData, userFiles)}
       <div className={classes.artistDetailContain}>
         <div className={classes.profile}>
-          <img className={classes.img} src={artist.profileImage} />
+          <img
+            className={classes.img}
+            src={`../../icons/${userData.id}-icon.png`}
+          />
 
           <div className={classes.info}>
             <p className={classes.name}>{userData?.name}</p>
@@ -66,28 +60,25 @@ function ArtistDetailPage(props) {
 }
 
 export async function getStaticProps(context) {
-  const artistId = context.params.id;
-
-  const [artist] = getArtistById(artistId);
+  const artistID = context.params.id;
 
   //add this condition to avoid request getting kicked to [..slug]
-  if (!artist) {
+  if (!artistID) {
     return {
       notFound: true,
     };
   }
   return {
     props: {
-      selectedArtist: artist,
+      artistID,
     },
     revalidate: 60,
   };
 }
 ///TELL NEXT JS WHICH PATHS TO EXPECT FROM DYNAMIC PAGE///
 export async function getStaticPaths() {
-  const artists = getAllArtistData();
-
-  const paths = artists.map((artist) => ({
+  const allArtistIDs = [{ id: "a1" }, { id: "a2" }, { id: "a3" }, { id: "a4" }];
+  const paths = allArtistIDs.map((artist) => ({
     params: { id: artist.id },
   }));
   return {

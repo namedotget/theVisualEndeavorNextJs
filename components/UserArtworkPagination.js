@@ -40,7 +40,7 @@ function UserArtworkPagination(props) {
     useEffect(() => {
       // Fetch items from another resources.
       const endOffset = itemOffset + itemsPerPage;
-      console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+
       setCurrentItems(images?.slice(itemOffset, endOffset));
       setPageCount(Math.ceil(images?.length / itemsPerPage));
     }, [itemOffset, itemsPerPage]);
@@ -48,16 +48,12 @@ function UserArtworkPagination(props) {
     // Invoke when user click to request another page.
     const handlePageClick = (event) => {
       const newOffset = (event.selected * itemsPerPage) % images?.length;
-      console.log(
-        `User requested page number ${event.selected}, which is offset ${newOffset}`
-      );
       setItemOffset(newOffset);
     };
 
     return (
       <>
         <div>
-          {console.log(images)}
           <Items currentItems={currentItems} />
           <ReactPaginate
             className={classes.paginationContain}

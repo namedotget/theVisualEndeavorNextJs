@@ -6,15 +6,11 @@ import { UI } from "../fiber/UI";
 import { Crosshair } from "../fiber/Crosshair";
 import { Scene } from "../fiber/Scene";
 import { useRouter } from "next/router";
-import { getAllArtistData } from "../DUMMY/dummy-backend";
-import { getAllData, getAllFiles } from "../firebase/helpers";
 //Camera//
 
-function RoomPage() {
-  const allArtists = getAllArtistData();
-
-  const [allData, setAllData] = useState([]);
-  const [allFiles, setAllFiles] = useState([]);
+function RoomPage(props) {
+  const { allData, allFiles } = props;
+  const [roomFiles, setRoomFiles] = useState([]);
 
   //Close all modals in Room on back button//
   const router = useRouter();
@@ -34,25 +30,13 @@ function RoomPage() {
 
   //data fetching
   useEffect(() => {
-    if (!allData[1]) getAllData().then((res) => setAllData(res));
-    return () => {
-      if (!allFiles[1])
-        getAllFiles().then((res) => {
-          res.forEach((user) => {
-            user.then((data) => {
-              setAllFiles((prev) => [
-                ...prev,
-                ...data.filter((data) => data?.url),
-              ]);
-            });
-          });
-        });
-      console.log(allFiles, allData);
-    };
-  });
+    if (allFiles[1]) {
+      setRoomFiles(allFiles?.filter((file) => file?.url));
+    }
+  }, [allFiles]);
 
-  if(!allData[1]) return <div>...loading data...</div>
-  if(!allFiles[1]) return <div>...loading files...</div>
+  if (!allData[1]) return <div>...loading data...</div>;
+  if (!allFiles[1]) return <div>...loading files...</div>;
 
   return (
     <div className={classes.contain}>
@@ -61,7 +45,7 @@ function RoomPage() {
           <Crosshair />
         </UI>
         <Canvas className={classes.canvas}>
-          <Scene allData={allData} allFiles={allFiles}/>
+          <Scene allData={allData} allFiles={roomFiles} />
         </Canvas>
       </>
     </div>

@@ -6,7 +6,6 @@ export function Lamp(props) {
   const pos = props.position;
   const { color } = props;
   const { mp3 } = props;
-  console.log(mp3);
   const [lampRef] = useSphere(() => ({
     mass: 1,
     args: [1],
@@ -22,7 +21,7 @@ export function Lamp(props) {
       <spotLight
         color={color}
         position={[pos[0], pos[1] + 2, pos[2]]}
-        intensity={0.8}
+        intensity={0.4}
         lookAt={pos}
       />
       {mp3 === "none" ? <mesh /> : <Sound mp3={mp3} position={pos} />}

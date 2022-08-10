@@ -1,21 +1,14 @@
 import classes from "../../styles/art-detail.module.css";
-import Link from "next/link";
-import {
-  getAllImages,
-  getArtistById,
-  getArtworkById,
-} from "../../DUMMY/dummy-backend";
-import UserArtworkList from "../../components/UserArtworkList";
-import { getAllFileIDs, getFileById } from "../../firebase/helpers";
 import { useEffect, useState } from "react";
 
 function ArtworkDetailPage(props) {
   const id = props.artworkId;
+  const { allFiles } = props;
   const [artwork, setArtwork] = useState(null);
   useEffect(() => {
-    if (id) getFileById(id).then((res) => setArtwork(res));
-    console.log(artwork);
-  });
+    if (allFiles[1] && id)
+      setArtwork(...allFiles.filter((file) => file.id === id));
+  }, [id, allFiles]);
 
   if (!artwork) return <div></div>;
 
@@ -39,12 +32,6 @@ function ArtworkDetailPage(props) {
 export async function getStaticProps(context) {
   const artworkId = context.params.aid;
 
-  //add this condition to avoid request getting kicked to [..slug]
-  //   if (!artist) {
-  //     return {
-  //       notFound: true,
-  //     };
-  //   }
   return {
     props: {
       artworkId: artworkId,
@@ -54,8 +41,6 @@ export async function getStaticProps(context) {
 }
 ///TELL NEXT JS WHICH PATHS TO EXPECT FROM DYNAMIC PAGE///
 export async function getStaticPaths() {
-  const allImages = getAllImages();
-
   const allImageAIDs = [
     { aid: "a1-1" },
     { aid: "a1-2" },
