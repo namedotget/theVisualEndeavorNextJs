@@ -37,12 +37,14 @@ function MyApp({ Component, pageProps }) {
           });
         });
       });
-  }, []);
+    if (!allData[1] || !allFiles[1]) setLoading(true);
+    else setLoading(false);
+  }, [allData, allFiles]);
 
   return (
     <Layout>
       <LoadingScreen loading={loading} />
-      {!loading && allFiles[1] && allData ? (
+      {!loading ? (
         <Component allFiles={allFiles} allData={allData} {...pageProps} />
       ) : (
         <div></div>
