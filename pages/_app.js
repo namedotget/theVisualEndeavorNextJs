@@ -26,25 +26,23 @@ function MyApp({ Component, pageProps }) {
   //DATA FETHCING
   useEffect(() => {
     if (!allData[1]) getAllData().then((res) => setAllData(res));
-    return () => {
-      if (!allFiles[1])
-        getAllFiles().then((res) => {
-          res.forEach((user) => {
-            user.then((data) => {
-              setAllFiles((prev) => [
-                ...prev,
-                ...data.filter((data) => data?.url),
-              ]);
-            });
+    if (!allFiles[1])
+      getAllFiles().then((res) => {
+        res.forEach((user) => {
+          user.then((data) => {
+            setAllFiles((prev) => [
+              ...prev,
+              ...data.filter((data) => data?.url),
+            ]);
           });
         });
-    };
+      });
   }, []);
 
   return (
     <Layout>
       <LoadingScreen loading={loading} />
-      {!loading && allFiles && allData ? (
+      {!loading && allFiles[1] && allData ? (
         <Component allFiles={allFiles} allData={allData} {...pageProps} />
       ) : (
         <div></div>
