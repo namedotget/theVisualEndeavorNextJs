@@ -1,5 +1,6 @@
 import classes from "../../styles/artist-detail.module.scss";
 import Link from "next/link";
+import Image from "next/image";
 import PaginatedUserArt from "../../components/UserArtworkList";
 import { useEffect, useState } from "react";
 
@@ -19,7 +20,7 @@ function ArtistDetailPage(props) {
       );
       console.log(userFiles);
     }
-  }, [artistID, allFiles, allData, userData]);
+  });
 
   if (!userData || !userFiles) {
     return (
@@ -33,20 +34,27 @@ function ArtistDetailPage(props) {
     <div className="pgContain">
       <div className={classes.artistDetailContain}>
         <div className={classes.profile}>
-          <img
-            className={classes.img}
-            src={`../../icons/${userData.id}-icon.png`}
-          />
+          <div className={classes.img}>
+            <Image
+              src={`/icons/${userData.id.trim()}-icon.png`}
+              width={500}
+              height={500}
+            />
+          </div>
 
           <div className={classes.info}>
             <p className={classes.name}>{userData?.name}</p>
             <p className={classes.bio}>{userData?.bio}</p>
             <div className={classes.socialLinks}>
-              <Link href={userData?.twitter || "www.twitter.com"}>
-                <img className={classes.socialIcon} src="/twitter-icon.png" />
+              <Link href={userData?.twitter}>
+                <div className={classes.socialIcon}>
+                  <Image src="/twitter-icon.png" width={50} height={50} />
+                </div>
               </Link>
-              <Link href={userData?.instagram || "www.instagram.com"}>
-                <img className={classes.socialIcon} src="/instagram-icon.png" />
+              <Link href={userData?.instagram}>
+                <div className={classes.socialIcon}>
+                  <Image src="/instagram-icon.png" width={50} height={50} />
+                </div>
               </Link>
             </div>
           </div>

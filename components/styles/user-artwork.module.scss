@@ -17,7 +17,7 @@
     animation-play-state: paused;
   }
 
-  .artwork {
+  .artwork > * {
     width: 10rem;
     height: 10rem;
     border-radius: 100% 100% 100% / 100% 100% 100%;

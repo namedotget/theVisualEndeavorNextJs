@@ -1,5 +1,6 @@
 import classes from "../../styles/art-detail.module.css";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 function ArtworkDetailPage(props) {
   const id = props.artworkId;
@@ -17,13 +18,20 @@ function ArtworkDetailPage(props) {
       <div className={classes.artDetailContain}>
         <h1 className={classes.artName}>{artwork.name}</h1>
         <h2 className={classes.artistName}>Created By: {id}</h2>
-        {artwork?.type === "video" ? (
-          <video className={classes.artwork} controls autoPlay>
-            <source src={artwork.url} />
-          </video>
-        ) : (
-          <img className={classes.artwork} src={artwork.url} />
-        )}
+        <div className={classes.artwork}>
+          {artwork?.type === "video" ? (
+            <video controls autoPlay width={800} height={400}>
+              <source src={artwork.url} />
+            </video>
+          ) : (
+            <Image
+              src={artwork.url}
+              alt={artwork.name}
+              width={800}
+              height={400}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

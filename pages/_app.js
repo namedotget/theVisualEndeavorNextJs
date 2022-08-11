@@ -37,9 +37,7 @@ function MyApp({ Component, pageProps }) {
           });
         });
       });
-    if (!allData[1] || !allFiles[1]) setLoading(true);
-    else setLoading(false);
-  }, [allData, allFiles]);
+  }, [allFiles, loading]);
 
   return (
     <Layout>

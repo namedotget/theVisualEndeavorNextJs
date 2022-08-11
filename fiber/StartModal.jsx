@@ -1,14 +1,20 @@
-function exitStartModal(e) {
+import { createElement } from "react";
+
+function closeStartModal() {
   const modal = document.querySelector(".roomStartModal");
-  if (e.key === "e") {
+  modal.classList.toggle("fadeOut");
+  //Remove modal, reset crosshair after fadeOut, remove fadeOut
+  setTimeout(() => {
+    modal?.remove();
+    document.querySelector(".crosshair").style.opacity = 0.5;
+    document.removeEventListener("keypress", exitStartModal);
     modal.classList.toggle("fadeOut");
-    //Remove modal, reset crosshair after fadeOut, remove fadeOut
-    setTimeout(() => {
-      modal?.remove();
-      document.querySelector(".crosshair").style.opacity = 0.5;
-      document.removeEventListener("keypress", exitStartModal);
-      modal.classList.toggle("fadeOut");
-    }, 500);
+  }, 500);
+}
+
+function exitStartModal(e) {
+  if (e.key === "e") {
+    closeStartModal();
   }
 }
 
@@ -35,6 +41,7 @@ export function StartModal() {
   const des4 = document.createElement("h3");
   des4.className = "roomStartDescription";
   des4.textContent = `< right click to pew-pew >`;
+
   modal.appendChild(title);
   modal.appendChild(des1);
   modal.appendChild(des2);

@@ -1,5 +1,6 @@
 import classes from "./styles/artist-preview.module.css";
 import Link from "next/link";
+import Image from "next/image";
 
 //props = artist
 function ArtistPreview(props) {
@@ -9,7 +10,13 @@ function ArtistPreview(props) {
   return (
     <Link href={path}>
       <div className={classes.artistContain}>
-        <img className={classes.img} src={`./icons/${artist.id}-icon.png`} />
+        <div className={classes.img}>
+          <Image
+            src={`/icons/${artist.id}-icon.png`}
+            width={200}
+            height={200}
+          />
+        </div>
 
         <div className={classes.name}>{artist.name}</div>
       </div>
