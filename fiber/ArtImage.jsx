@@ -6,9 +6,13 @@ import * as THREE from "three";
 import { handleModalClick, handleModalKeys } from "./Modal";
 import { Detailed } from "@react-three/drei";
 import { Camera, FrontSide, LOD, Mesh, Vector3 } from "three";
+import { useContext } from "react";
+import ModalContext from "../components/ui/modal-context";
 
 // Constants
 export const ArtImage = (props) => {
+  const ctx = useContext(ModalContext);
+
   const { artwork, artist } = props;
   //Physics//
 
@@ -27,7 +31,6 @@ export const ArtImage = (props) => {
   ///LOD////
 
   function handleLeftClick(e) {
-    //open modal//
     handleModalClick(e, artwork, artist);
   }
 

@@ -45,6 +45,9 @@ body {
 /* ROOM */
 
 .crosshair {
+  position: absolute;
+  top: 50%;
+  left: 49.75%;
   height: 5px;
   width: 5px;
   background-color: white;

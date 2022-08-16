@@ -31,6 +31,8 @@ import vertex3 from "../public/files/shaders/a1-sha3-vertex.glsl";
 import { ArtVideo } from "./ArtVideo";
 import { Lamp } from "./Light";
 import { ArtistCenterPiece } from "./ArtistCenterPiece";
+import { useContext } from "react";
+import ModalContext from "../components/ui/modal-context";
 
 extend({ PointerLockControls });
 
@@ -49,6 +51,7 @@ export const Scene = (props) => {
       //Remove all modals//
       document.querySelector(".roomModal")?.remove();
       document.querySelector(".roomStartModal")?.remove();
+
       //click logo//
       const logo = document.querySelector(".logo-canvas_canvas__3WjCv");
 
@@ -61,12 +64,10 @@ export const Scene = (props) => {
     const handleFocus = () => {
       controls.current.lock();
     };
-
     document.addEventListener("click", handleFocus);
-
     document.addEventListener("keypress", keyQuit);
+    props.start();
 
-    StartModal();
     return () => {
       document.removeEventListener("click", handleFocus);
     };
@@ -105,7 +106,6 @@ export const Scene = (props) => {
       />
     );
   }
-
   return (
     <>
       {/** Skybox */}

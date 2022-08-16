@@ -1,13 +1,16 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import { useBox, usePlane } from "@react-three/cannon";
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 import { handleModalClick, handleModalKeys } from "./Modal";
 import { Detailed } from "@react-three/drei";
 import { sRGBEncoding, Texture, LinearFilter, VideoTexture } from "three";
+import ModalContext from "../components/ui/modal-context";
 
 // Constants
 export const ArtVideo = (props) => {
+  const ctx = useContext(ModalContext);
+
   const { artwork, artist } = props;
   const url = artwork.url;
   const [video] = useState(() =>

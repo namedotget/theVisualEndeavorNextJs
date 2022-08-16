@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import LoadingScreen from "../components/LoadingScreen";
 import { useState, useEffect } from "react";
 import { getAllData, getAllFiles } from "../firebase/helpers";
+import { ModalContextProvider } from "../components/ui/modal-context";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -40,14 +41,16 @@ function MyApp({ Component, pageProps }) {
   }, [allFiles, loading]);
 
   return (
-    <Layout>
-      <LoadingScreen loading={loading} />
-      {!loading ? (
-        <Component allFiles={allFiles} allData={allData} {...pageProps} />
-      ) : (
-        <div></div>
-      )}
-    </Layout>
+    <ModalContextProvider>
+      <Layout>
+        <LoadingScreen loading={loading} />
+        {!loading ? (
+          <Component allFiles={allFiles} allData={allData} {...pageProps} />
+        ) : (
+          <div></div>
+        )}
+      </Layout>
+    </ModalContextProvider>
   );
 }
 
