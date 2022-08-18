@@ -1,7 +1,6 @@
 import { Fragment, useContext } from "react";
 import ModalContext from "../ui/modal-context";
-import BackgroundCanvas from "./BackgroundCanvas";
-import LogoCanvas from "./LogoCanvas";
+import Logo from "./Logo";
 import MainFooter from "./MainFooter";
 import MainHeader from "./MainHeader";
 import Modal from "../ui/modal";
@@ -13,7 +12,7 @@ function Layout(props) {
 
   return (
     <>
-      <LogoCanvas />
+      <Logo />
       <MainHeader />
       <main>{props.children}</main>
       {activeModal && <Modal data={activeModal} />}

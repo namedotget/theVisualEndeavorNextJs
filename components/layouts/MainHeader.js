@@ -1,6 +1,4 @@
 import Link from "next/link";
-import BackgroundCanvas from "./BackgroundCanvas";
-import LogoCanvas from "./LogoCanvas";
 import classes from "./main-header.module.css";
 function MainHeader() {
   return (

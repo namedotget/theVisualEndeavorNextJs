@@ -1,0 +1,19 @@
+.contain {
+  position: relative;
+  left: 5%;
+  top: 50%;
+  z-index: 0;
+  width: 30%;
+  height: 100%;
+}
+
+.logo {
+  scale: 0.75;
+  border-radius: 100%;
+  transition: 1.5s;
+}
+
+.logo:hover {
+  scale: 0.9;
+  transition: 1.5s;
+}

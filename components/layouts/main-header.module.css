@@ -21,6 +21,7 @@
 .navigation {
   position: absolute;
   left: 55%;
+  top: 3.5em;
   display: flex;
   justify-content: center;
   align-items: center;
