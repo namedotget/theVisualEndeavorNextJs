@@ -5,7 +5,7 @@ TO-DO :
 
     - fix duplicate renders on gallery and artist page
 
-    - turn Modals into a Context, display as overlay
+    - turn Art Modal into Context Modal
 
     - add mobile controls
 

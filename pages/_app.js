@@ -27,7 +27,8 @@ function MyApp({ Component, pageProps }) {
   //DATA FETHCING
   useEffect(() => {
     if (!allData[1]) getAllData().then((res) => setAllData(res));
-    if (!allFiles[1])
+
+    if (!allFiles[0])
       getAllFiles().then((res) => {
         res.forEach((user) => {
           user.then((data) => {
@@ -38,7 +39,7 @@ function MyApp({ Component, pageProps }) {
           });
         });
       });
-  }, [allFiles, loading]);
+  }, []);
 
   return (
     <ModalContextProvider>
