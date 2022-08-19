@@ -28,48 +28,70 @@ function Modal(props) {
   function StartModal() {
     return (
       <>
-        <Image src={"/../../icons/tve-icon.png"} width={500} height={500} />
-        <label htmlFor="movement">move/look</label>
-        <label htmlFor="qkey">quit</label>
-        <label htmlFor="ekey">close pop-up</label>
-        <label htmlFor="leftmouse">open artwork pop-up</label>
-        <label htmlFor="rightmouse">pew-pew</label>
-        <Image
-          id="movement"
-          src={"/../../icons/a1-icon.png"}
-          width={200}
-          height={200}
-        />
-        <Image
-          id="movement"
-          src={"/../../icons/a1-icon.png"}
-          width={200}
-          height={200}
-        />
-        <Image
-          id="qkey"
-          src={"/../../icons/a1-icon.png"}
-          width={200}
-          height={200}
-        />
-        <Image
-          id="ekey"
-          src={"/../../icons/a1-icon.png"}
-          width={200}
-          height={200}
-        />
-        <Image
-          id="leftmouse"
-          src={"/../../icons/a1-icon.png"}
-          width={200}
-          height={200}
-        />
-        <Image
-          id="rightmouse"
-          src={"/../../icons/a1-icon.png"}
-          width={200}
-          height={200}
-        />
+        <div className={classes.logo}>
+          <Image src={"/icons/tve-icon.jpg"} width={128} height={128} />
+        </div>
+        <div className={classes.row}>
+          <div className={classes.description}>
+            <p>Movement</p>
+            <Image
+              className={classes.img}
+              id="movement"
+              src={"/icons/modal/wasd_colin.png"}
+              width={85}
+              height={85}
+            />
+          </div>
+          <div className={classes.description}>
+            <p>Look</p>
+            <Image
+              className={classes.img}
+              src={"/icons/modal/mouse-icon.png"}
+              width={80}
+              height={80}
+            />
+          </div>
+        </div>
+        <div className={classes.row}>
+          <div className={classes.description}>
+            <p>Quit</p>
+            <Image
+              id="qkey"
+              src={"/icons/modal/q-icon.png"}
+              width={50}
+              height={50}
+            />
+          </div>
+          <div className={classes.description}>
+            <p>Exit Pop-up</p>
+            <Image
+              id="ekey"
+              src={"/icons/modal/e-icon.png"}
+              width={50}
+              height={50}
+            />
+          </div>
+        </div>
+        <div className={classes.row}>
+          <div className={classes.description}>
+            <p>Open Pop-up</p>
+            <Image
+              id="leftmouse"
+              src={"/icons/modal/left-click.png"}
+              width={75}
+              height={75}
+            />
+          </div>
+          <div className={classes.description}>
+            <p>Pew-Pew</p>
+            <Image
+              id="rightmouse"
+              src={"/icons/modal/right-click.png"}
+              width={75}
+              height={75}
+            />
+          </div>
+        </div>
       </>
     );
   }
@@ -94,8 +116,8 @@ function Modal(props) {
     <>
       {showModal ? (
         <div className={classes.modalContain}>
-          {(data?.type === "start" && showModal && <StartModal />) ||
-            (data?.type === "artwork" && showModal && <ArtworkModal />) ||
+          {(data?.type === "start" && <StartModal />) ||
+            (data?.type === "artwork" && <ArtworkModal />) ||
             (!data.type && "")}
         </div>
       ) : (

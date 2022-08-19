@@ -9,8 +9,6 @@ import ModalContext from "../components/ui/modal-context";
 
 // Constants
 export const ArtVideo = (props) => {
-  const ctx = useContext(ModalContext);
-
   const { artwork, artist } = props;
   const url = artwork.url;
   const [video] = useState(() =>

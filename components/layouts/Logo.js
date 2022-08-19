@@ -15,7 +15,7 @@ function Logo(props) {
       <div className={classes.contain}>
         <Link href="/">
           <Image
-            className={classes.logo}
+            className="logo"
             src={"/icons/tve-icon.jpg"}
             alt="tve"
             width={250}

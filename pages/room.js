@@ -4,7 +4,7 @@ import React, { forwardRef, Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Scene } from "../fiber/Scene";
 import { useRouter } from "next/router";
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import ModalContext from "../components/ui/modal-context";
 //Camera//
 

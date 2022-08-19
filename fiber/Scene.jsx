@@ -13,26 +13,16 @@ import { Plane } from "./Plane";
 import { Player } from "./Player";
 import { Cube } from "./Cube";
 import { ArtImage } from "./ArtImage";
-import { ArtShader } from "./ArtShader";
 import { Model } from "./Model";
-import { StartModal } from "./StartModal";
+
 
 //SHADERS///
 import fragment0 from "../public/files/shaders/a1-sha0-fragment.glsl";
 import vertex0 from "../public/files/shaders/a1-sha0-vertex.glsl";
-import fragment1 from "../public/files/shaders/a1-sha1-fragment.glsl";
-import vertex1 from "../public/files/shaders/a1-sha1-vertex.glsl";
-import fragment2 from "../public/files/shaders/a1-sha2-fragment.glsl";
-import vertex2 from "../public/files/shaders/a1-sha2-vertex.glsl";
-import fragment3 from "../public/files/shaders/a1-sha3-fragment.glsl";
-import vertex3 from "../public/files/shaders/a1-sha3-vertex.glsl";
 /////////////
 
 import { ArtVideo } from "./ArtVideo";
 import { Lamp } from "./Light";
-import { ArtistCenterPiece } from "./ArtistCenterPiece";
-import { useContext } from "react";
-import ModalContext from "../components/ui/modal-context";
 
 extend({ PointerLockControls });
 
@@ -53,7 +43,7 @@ export const Scene = (props) => {
       document.querySelector(".roomStartModal")?.remove();
 
       //click logo//
-      const logo = document.querySelector(".logo-canvas_canvas__3WjCv");
+      const logo = document.querySelector(".logo");
 
       logo.click();
       document.removeEventListener("keypress", keyQuit);

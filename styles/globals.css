@@ -148,6 +148,17 @@ body {
   height: 100vh;
 }
 
+.logo {
+  scale: 0.75;
+  border-radius: 100%;
+  transition: 1.5s;
+}
+
+.logo:hover {
+  scale: 0.9;
+  transition: 1.5s;
+}
+
 /* ANIMATIONS */
 
 /* Fade In */

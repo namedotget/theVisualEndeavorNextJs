@@ -8,11 +8,37 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 1rem;
   z-index: 100;
-  background-color: transparent;
-  backdrop-filter: blur(30px);
+  background-color: rgba(255, 255, 255, 0.238);
+  backdrop-filter: blur(50px);
   border-radius: 50px;
+}
+
+.row {
+  width: 80%;
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10rem;
+}
+
+.description {
+  color: rgba(255, 255, 255, 0.67);
+  font-size: 1.25rem;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo img {
+  border-radius: 100%;
 }
 
 .hide {

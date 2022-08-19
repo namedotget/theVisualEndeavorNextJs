@@ -11,8 +11,6 @@ import ModalContext from "../components/ui/modal-context";
 
 // Constants
 export const ArtImage = (props) => {
-  const ctx = useContext(ModalContext);
-
   const { artwork, artist } = props;
   //Physics//
 
